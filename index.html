@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>स्कूल टाइमटेबल</title>
+
+<a href="karyabhar.html" target="_blank">👩‍🏫 शिक्षक कार्यभार देखें</a>
+
   <style>
     body { font-family: sans-serif; padding: 20px; }
     select, table { margin: 10px 0; }
@@ -32,9 +35,10 @@
       <option value="11:30-12:10">11:30-12:10 IInd</option>
       <option value="12:20-01:00">12:20-01:00 IIIrd</option>
       <option value="01:00-01:40">01:00-01:40 IVth</option>
-      <option value="02:10-3:00">02:10-03:00 Vth</option>
-      <option value="03:00-04:00">03:00-04:00 VIth</option>
-      <option value="04:00-04:30">04:00-04:30 VIIth</option>
+      <option value="02:10-02:50">02:10-02:50 Vth</option>
+      <option value="02:50-03:30">02:50-03:30 VIth</option>
+      <option value="03:30-04:00">03:30-04:00 VIIth</option>
+      <option value="04:00-04:30">04:00-04:30 VIIIth</option>
     </select>
   </label>
 
@@ -42,6 +46,9 @@
 
   <h3>📚 क्लास वाइज शेड्यूल:</h3>
   <div id="classTable"></div>
+
+  <h3>🧑‍🏫 चयनित शिक्षक के सभी पीरियड्स:</h3>
+  <div id="teacherSchedule"></div>
 
   <h3>🧑‍🏫 खाली टीचर्स:</h3>
   <ul id="vacantTeachers"></ul>
@@ -61,22 +68,22 @@
     "10:50-11:30": {
       "IX A": "ENGLISH - HARERAM VANSHKAR",
       "IX B": "SOCIAL SCIENCE - RAJESH MURKHE",
-      "X A": "ENGLISH - NAGEENA MONIN",
+      "X A": "ENGLISH - NAGEENA MOMIN",
       "X B": "HINDI - SUNIL UIKEY",
-      "XI A & B": "POLITICAL SCIENCE - H.K.THAKUR",
-      "XI C": "MATHS - SHUBHAM CHOURASIYA // BIO - SMITA SHARMA",
+      "XI A": "POLITICAL SCIENCE - H.K. THAKUR",
+      "XI B": "GEOGRAPHY - N.R. SAHU",
+      "XI C": "MATHS - DHARMENDRA NEMA / BIO - SMITA SHARMA",
       "XII A": "HISTORY - MADAN DHEEMAR",
-      "XII B": "GEOGRAPHY - N.R. SAHU",
       "XII C": "CHEMISTRY - N.P. MEHRA"
     },
     "11:30-12:10": {
-      "IX A": "SOCIAL SCIENCE - HARERAM VANSHKAR ",
+      "IX A": "SOCIAL SCIENCE - RAJESH MURKHE",
       "IX B": "HINDI - VINITA CHOURASIYA",
       "X A": "SCIENCE - SMITA SHARMA",
-      "X B": "SOCIAL SCIENCE - H.K.THAKUR",
-      "XI A, B & C": "ENGLISH - HARERAM VANSHKAR // AGRICULTURE - RINKESH THAKUR",
+      "X B": "SOCIAL SCIENCE - H.K. THAKUR",
+      "XI A & C": "ENGLISH - VIKAS VERMA / AGRICULTURE - RINKESH THAKUR",
+      "XI C": "ENGLISH - HARERAM VANSHKAR",
       "XII A": "GEOGRAPHY - N.R. SAHU",
-      "XII B": "HISTORY - MADAN DHEEMAR",
       "XII C": "PHYSICS - SHUBHAM CHOURASIYA"
     },
     "12:20-01:00": {
@@ -84,51 +91,64 @@
       "IX B": "SCIENCE - DEEPALI SHARMA",
       "X A": "HINDI - SUNIL UIKEY",
       "X B": "MATHS - DHARMENDRA NEMA",
-      "XI A & B": "GEOGRAPHY - N.R. SAHU",
+      "XI A": "GEOGRAPHY - N.R. SAHU",
+      "XI B":"HISTORY - MADAN DHEEMAR",
       "XI C": "CHEMISTRY - N.P. MEHRA",
-      "XII A & B": "ENGLISH - HARERAM VANSHKAR // AGRICULTURE - RINKESH THAKUR",
-      "XII C": "MATHS - SHUBHAM CHOURASIYA // BIO - SMITA SHARMA",
+      "XII A": "ENGLISH - VIKAS VERMA / AGRICULTURE - RINKESH THAKUR",
+      "XII C": "MATHS - SHUBHAM CHOURASIYA / BIO - SMITA SHARMA"
     },
     "01:00-01:40": {
       "IX A": "MATHS - DHARMENDRA NEMA",
       "IX B": "ENGLSIH - HARERAM VANSHKAR",
-      "X A & B": "IT - UTTAM CHAND DEHRIYA / AG - RINKESH THAKUR / SANSKRIT - VINITA CHOURASIYA",
-      "XI A & B": "HISTORY - MADAN DHEEMAR",
+      "X A & B": "IT - UTTAM CHAND DEHRIYA / AGRICULTURE - RINKESH THAKUR / SANSKRIT - VINITA CHOURASIYA",
+      "XI A": "HISTORY - MADAN DHEEMAR",
+      "XI B": "POLITICAL SCIENCE - H.K. THAKUR",
       "XI C": "PHYSICS - SHUBHAM CHOURASIYA",
       "XII A": "POLITICAL SCIENCE - RAJESH MURKHE",
-      "XII B & C": "HINDI - SUNIL UIKEY",
+      "XII C": "HINDI - SUNIL UIKEY"
     },
-    "02:10-3:00": {
+    "02:10-02:50": {
       "IX A": "SCIENCE - DEEPALI SHARMA",
       "IX B": "MATHS - SHUBHAM CHOURASIYA",
       "X A": "MATHS - DHARMENDRA NEMA",
       "X B": "SCIENCE - SMITA SHARMA",
-      "XI A, B & C": "HINDI - SUNIL UIKEY // IT - UTTAM CHAND DEHRIYA",
+      "XI A & C": "HINDI - SUNIL UIKEY / IT - UTTAM CHAND DEHRIYA",
+      "XI B": "HINDI - VINITA CHOURASIYA / IT - UTTAM CHAND DEHRIYA",
       "XII A": "HINDI - P.S. JHARIYA",
-      "XII B": "POLITICAL SCIENCE - H.K. THAKUR",
-      "XII C": "ENGLISH - VIKAS VERMA",
+      "XII C": "ENGLISH - VIKAS VERMA"
     },
-    "03:00-04:00": {
-      "IX A & B": "IT - UTTAM CHAND DEHRIYA / RINKESH THAKUR - AG / SANSKRIT - VINITA CHOURASIYA",
+    "02:50-03:30": {
+      "IX A & B": "IT - UTTAM CHAND DEHRIYA / AGRICULTURE - RINKESH THAKUR / SANSKRIT - VINITA CHOURASIYA",
       "X A": "SOCIAL SCIENCE - MADAN DHEEMAR",
       "X B": "ENGLSIH - NAGEENA MOMIN",
       "XI A": "HISTORY - MADAN DHEEMAR",
       "XI B": "POLITICAL SCIENCE - H.K. THAKUR",
       "XI C": "BIOLOGY PRACTICAL - SMITA SHARMA",
-      "XII A & B": "ICT - DEEPAK",
+      "XII A": "ICT - DEEPAK",
       "XII C": "CHEMISTRY PRACTICAL - N.P. MEHRA"
     },
+    "03:30-04:00": {
+      "IX A": "ENGLISH - HARERAM VANSHKAR",
+      "IX B": "SCIENCE PRACTICAL - N.P. MEHRA",
+      "X A": "SCIENCE PRACTICAL - SMITA SHARMA",
+      "X B": "ENGLISH - NAGEENA MOMIN",
+      "XI A": "ENGLISH - VIKAS VERMA",
+      "XI B": "GEOGRAPHY PRACTICAL - N.R. SAHU",
+      "XI C": "BIO PRACTICAL - SMITA SHARMA",
+      "XII A": "ICT DEEPAK",
+      "XII C": "CHEMISTRY - N.P. MEHRA"
+    },
     "04:00-04:30": {
-      "IX A": "GAMES",
-      "IX B": "GAMES",
-      "X A": "GAMES",
-      "X B": "GAMES",
-      "XI A": "GAMES",
-      "XI B": "GAMES",
-      "XI C": "GAMES",
-      "XII A": "GAMES",
-      "XII B": "GAMES",
-      "XII C": "GAMES"
+      "IX A": "GAMES - SUNIL UIKEY",
+      "IX B": "GAMES - SUNIL UIKEY",
+      "X A": "GAMES - SUNIL UIKEY",
+      "X B": "GAMES - SUNIL UIKEY",
+      "XI A": "GAMES - SUNIL UIKEY",
+      "XI B": "GAMES - SUNIL UIKEY",
+      "XI C": "GAMES - SUNIL UIKEY",
+      "XII A": "GAMES - SUNIL UIKEY",
+      "XII B": "GAMES - SUNIL UIKEY",
+      "XII C": "GAMES - SUNIL UIKEY"
     },
     
   },
@@ -136,22 +156,22 @@
    "10:50-11:30": {
       "IX A": "ENGLISH - HARERAM VANSHKAR",
       "IX B": "SOCIAL SCIENCE - RAJESH MURKHE",
-      "X A": "ENGLISH - NAGEENA MONIN",
+      "X A": "ENGLISH - NAGEENA MOMIN",
       "X B": "HINDI - SUNIL UIKEY",
-      "XI A & B": "POLITICAL SCIENCE - H.K.THAKUR",
-      "XI C": "MATHS - SHUBHAM CHOURASIYA // BIO - SMITA SHARMA",
+      "XI A": "POLITICAL SCIENCE - H.K. THAKUR",
+      "XI B": "GEOGRAPHY - N.R. SAHU",
+      "XI C": "MATHS - DHARMENDRA NEMA / BIO - SMITA SHARMA",
       "XII A": "HISTORY - MADAN DHEEMAR",
-      "XII B": "GEOGRAPHY - N.R. SAHU",
       "XII C": "CHEMISTRY - N.P. MEHRA"
     },
     "11:30-12:10": {
-      "IX A": "SOCIAL SCIENCE - HARERAM VANSHKAR ",
+      "IX A": "SOCIAL SCIENCE - RAJESH MURKHE",
       "IX B": "HINDI - VINITA CHOURASIYA",
       "X A": "SCIENCE - SMITA SHARMA",
-      "X B": "SOCIAL SCIENCE - H.K.THAKUR",
-      "XI A, B & C": "ENGLISH - HARERAM VANSHKAR // AGRICULTURE - RINKESH THAKUR",
+      "X B": "SOCIAL SCIENCE - H.K. THAKUR",
+      "XI A, B & C": "ENGLISH - HARERAM VANSHKAR / AGRICULTURE - RINKESH THAKUR",
+      "XI C": "ENGLISH - VIKAS VERMA",
       "XII A": "GEOGRAPHY - N.R. SAHU",
-      "XII B": "HISTORY - MADAN DHEEMAR",
       "XII C": "PHYSICS - SHUBHAM CHOURASIYA"
     },
     "12:20-01:00": {
@@ -159,73 +179,86 @@
       "IX B": "SCIENCE - DEEPALI SHARMA",
       "X A": "HINDI - SUNIL UIKEY",
       "X B": "MATHS - DHARMENDRA NEMA",
-      "XI A & B": "GEOGRAPHY - N.R. SAHU",
+      "XI A": "GEOGRAPHY - N.R. SAHU",
+      "XI B":"HISTORY - MADAN DHEEMAR",
       "XI C": "CHEMISTRY - N.P. MEHRA",
-      "XII A & B": "ENGLISH - HARERAM VANSHKAR // AGRICULTURE - RINKESH THAKUR",
-      "XII C": "MATHS - SHUBHAM CHOURASIYA // BIO - SMITA SHARMA",
+      "XII A": "ENGLISH - VIKAS VERMA / AGRICULTURE - RINKESH THAKUR",
+      "XII C": "MATHS - SHUBHAM CHOURASIYA / BIO - SMITA SHARMA"
     },
     "01:00-01:40": {
       "IX A": "MATHS - DHARMENDRA NEMA",
       "IX B": "ENGLSIH - HARERAM VANSHKAR",
-      "X A & B": "IT - UTTAM CHAND DEHRIYA / AG - RINKESH THAKUR / SANSKRIT - VINITA CHOURASIYA",
-      "XI A & B": "HISTORY - MADAN DHEEMAR",
+      "X A & B": "IT - UTTAM CHAND DEHRIYA / AGRICULTURE - RINKESH THAKUR / SANSKRIT - VINITA CHOURASIYA",
+      "XI A": "HISTORY - MADAN DHEEMAR",
+      "XI B": "POLITICAL SCIENCE - H.K. THAKUR",
       "XI C": "PHYSICS - SHUBHAM CHOURASIYA",
       "XII A": "POLITICAL SCIENCE - RAJESH MURKHE",
-      "XII B & C": "HINDI - SUNIL UIKEY",
+      "XII C": "HINDI - SUNIL UIKEY"
     },
-    "02:10-3:00": {
+    "02:10-02:50": {
       "IX A": "SCIENCE - DEEPALI SHARMA",
       "IX B": "MATHS - SHUBHAM CHOURASIYA",
       "X A": "MATHS - DHARMENDRA NEMA",
       "X B": "SCIENCE - SMITA SHARMA",
-      "XI A, B & C": "HINDI - SUNIL UIKEY // IT - UTTAM CHAND DEHRIYA",
+      "XI A & C": "HINDI - SUNIL UIKEY / IT - UTTAM CHAND DEHRIYA",
+      "XI B": "HINDI - VINITA CHOURASIYA / IT - UTTAM CHAND DEHRIYA",
       "XII A": "HINDI - P.S. JHARIYA",
-      "XII B": "POLITICAL SCIENCE - H.K. THAKUR",
-      "XII C": "ENGLISH - VIKAS VERMA",
+      "XII C": "ENGLISH - VIKAS VERMA"
     },
-    "03:00-04:00": {
-      "IX A & B": "IT - UTTAM CHAND DEHRIYA / RINKESH THAKUR - AG / SANSKRIT - VINITA CHOURASIYA",
+    "02:50-03:30": {
+      "IX A & B": "IT - UTTAM CHAND DEHRIYA / AGRICULTURE - RINKESH THAKUR / SANSKRIT - VINITA CHOURASIYA",
       "X A": "SOCIAL SCIENCE - MADAN DHEEMAR",
       "X B": "ENGLSIH - NAGEENA MOMIN",
       "XI A": "HISTORY - MADAN DHEEMAR",
       "XI B": "POLITICAL SCIENCE - H.K. THAKUR",
       "XI C": "BIOLOGY PRACTICAL - SMITA SHARMA",
-      "XII A & B": "ICT - DEEPAK",
+      "XII A": "ICT - DEEPAK",
       "XII C": "CHEMISTRY PRACTICAL - N.P. MEHRA"
     },
+    "03:30-04:00": {
+      "IX A": "ENGLISH - HARERAM VANSHKAR",
+      "IX B": "SCIENCE PRACTICAL - N.P. MEHRA",
+      "X A": "SCIENCE PRACTICAL - SMITA SHARMA",
+      "X B": "ENGLISH - NAGEENA MOMIN",
+      "XI A": "ENGLISH - VIKAS VERMA",
+      "XI B": "GEOGRAPHY PRACTICAL - N.R. SAHU",
+      "XI C": "BIO PRACTICAL - SMITA SHARMA",
+      "XII A": "ICT DEEPAK",
+      "XII C": "CHEMISTRY - N.P. MEHRA"
+    },
     "04:00-04:30": {
-      "IX A": "GAMES",
-      "IX B": "GAMES",
-      "X A": "GAMES",
-      "X B": "GAMES",
-      "XI A": "GAMES",
-      "XI B": "GAMES",
-      "XI C": "GAMES",
-      "XII A": "GAMES",
-      "XII B": "GAMES",
-      "XII C": "GAMES"
+      "IX A": "GAMES - SUNIL UIKEY",
+      "IX B": "GAMES - SUNIL UIKEY",
+      "X A": "GAMES - SUNIL UIKEY",
+      "X B": "GAMES - SUNIL UIKEY",
+      "XI A": "GAMES - SUNIL UIKEY",
+      "XI B": "GAMES - SUNIL UIKEY",
+      "XI C": "GAMES - SUNIL UIKEY",
+      "XII A": "GAMES - SUNIL UIKEY",
+      "XII B": "GAMES - SUNIL UIKEY",
+      "XII C": "GAMES - SUNIL UIKEY"
     }, 
   },
   "Wednesday": {
    "10:50-11:30": {
       "IX A": "ENGLISH - HARERAM VANSHKAR",
       "IX B": "SOCIAL SCIENCE - RAJESH MURKHE",
-      "X A": "ENGLISH - NAGEENA MONIN",
+      "X A": "ENGLISH - NAGEENA MOMIN",
       "X B": "HINDI - SUNIL UIKEY",
-      "XI A & B": "POLITICAL SCIENCE - H.K.THAKUR",
-      "XI C": "MATHS - SHUBHAM CHOURASIYA // BIO - SMITA SHARMA",
+      "XI A": "POLITICAL SCIENCE - H.K. THAKUR",
+      "XI B": "GEOGRAPHY - N.R. SAHU",
+      "XI C": "MATHS - DHARMENDRA NEMA / BIO - SMITA SHARMA",
       "XII A": "HISTORY - MADAN DHEEMAR",
-      "XII B": "GEOGRAPHY - N.R. SAHU",
       "XII C": "CHEMISTRY - N.P. MEHRA"
     },
     "11:30-12:10": {
-      "IX A": "SOCIAL SCIENCE - HARERAM VANSHKAR ",
+      "IX A": "SOCIAL SCIENCE - RAJESH MURKHE",
       "IX B": "HINDI - VINITA CHOURASIYA",
       "X A": "SCIENCE - SMITA SHARMA",
-      "X B": "SOCIAL SCIENCE - H.K.THAKUR",
-      "XI A, B & C": "ENGLISH - HARERAM VANSHKAR // AGRICULTURE - RINKESH THAKUR",
+      "X B": "SOCIAL SCIENCE - H.K. THAKUR",
+      "XI A, B & C": "ENGLISH - HARERAM VANSHKAR / AGRICULTURE - RINKESH THAKUR",
+      "XI C": "ENGLISH - VIKAS VERMA",
       "XII A": "GEOGRAPHY - N.R. SAHU",
-      "XII B": "HISTORY - MADAN DHEEMAR",
       "XII C": "PHYSICS - SHUBHAM CHOURASIYA"
     },
     "12:20-01:00": {
@@ -233,73 +266,86 @@
       "IX B": "SCIENCE - DEEPALI SHARMA",
       "X A": "HINDI - SUNIL UIKEY",
       "X B": "MATHS - DHARMENDRA NEMA",
-      "XI A & B": "GEOGRAPHY - N.R. SAHU",
+      "XI A": "GEOGRAPHY - N.R. SAHU",
+      "XI B":"HISTORY - MADAN DHEEMAR",
       "XI C": "CHEMISTRY - N.P. MEHRA",
-      "XII A & B": "ENGLISH - HARERAM VANSHKAR // AGRICULTURE - RINKESH THAKUR",
-      "XII C": "MATHS - SHUBHAM CHOURASIYA // BIO - SMITA SHARMA"
+      "XII A": "ENGLISH - VIKAS VERMA / AGRICULTURE - RINKESH THAKUR",
+      "XII C": "MATHS - SHUBHAM CHOURASIYA / BIO - SMITA SHARMA"
     },
     "01:00-01:40": {
       "IX A": "MATHS - DHARMENDRA NEMA",
       "IX B": "ENGLSIH - HARERAM VANSHKAR",
-      "X A & B": "IT - UTTAM CHAND DEHRIYA / AG - RINKESH THAKUR / SANSKRIT - VINITA CHOURASIYA",
-      "XI A & B": "HISTORY - MADAN DHEEMAR",
+      "X A & B": "IT - UTTAM CHAND DEHRIYA / AGRICULTURE - RINKESH THAKUR / SANSKRIT - VINITA CHOURASIYA",
+      "XI A": "HISTORY - MADAN DHEEMAR",
+      "XI B": "POLITICAL SCIENCE - H.K. THAKUR",
       "XI C": "PHYSICS - SHUBHAM CHOURASIYA",
       "XII A": "POLITICAL SCIENCE - RAJESH MURKHE",
-      "XII B & C": "HINDI - SUNIL UIKEY"
+      "XII C": "HINDI - SUNIL UIKEY"
     },
-    "02:10-3:00": {
+    "02:10-02:50": {
       "IX A": "SCIENCE - DEEPALI SHARMA",
       "IX B": "MATHS - SHUBHAM CHOURASIYA",
       "X A": "MATHS - DHARMENDRA NEMA",
       "X B": "SCIENCE - SMITA SHARMA",
-      "XI A, B & C": "HINDI - SUNIL UIKEY // IT - UTTAM CHAND DEHRIYA",
+      "XI A & C": "HINDI - SUNIL UIKEY / IT - UTTAM CHAND DEHRIYA",
+      "XI B": "HINDI - VINITA CHOURASIYA / IT - UTTAM CHAND DEHRIYA",
       "XII A": "HINDI - P.S. JHARIYA",
-      "XII B": "POLITICAL SCIENCE - H.K. THAKUR",
-      "XII C": "ENGLISH - VIKAS VERMA",
+      "XII C": "ENGLISH - VIKAS VERMA"
     },
-    "03:00-04:00": {
-      "IX A & B": "IT - UTTAM CHAND DEHRIYA / RINKESH THAKUR - AG / SANSKRIT - VINITA CHOURASIYA",
+    "02:50-03:30": {
+      "IX A & B": "IT - UTTAM CHAND DEHRIYA / AGRICULTURE - RINKESH THAKUR / SANSKRIT - VINITA CHOURASIYA",
       "X A": "SOCIAL SCIENCE - MADAN DHEEMAR",
       "X B": "ENGLSIH - NAGEENA MOMIN",
-      "XI A": "POLITICAL SCIENCE - H.K. THAKUR",
-      "XI B": "HINDI - SUNIL UIKEY",
-      "XI C": "CHEMISTRY PRACTICAL - N.P. MEHRA",
-      "XII A & B": "ICT - DEEPAK",
-      "XII C": "PHYSICS PRACTICAL - SHUBHAM CHOURASIYA"
+      "XI A": "HISTORY - MADAN DHEEMAR",
+      "XI B": "POLITICAL SCIENCE - H.K. THAKUR",
+      "XI C": "BIOLOGY PRACTICAL - SMITA SHARMA",
+      "XII A": "ICT - DEEPAK",
+      "XII C": "CHEMISTRY PRACTICAL - N.P. MEHRA"
+    },
+    "03:30-04:00": {
+      "IX A": "ENGLISH - HARERAM VANSHKAR",
+      "IX B": "SCIENCE PRACTICAL - N.P. MEHRA",
+      "X A": "SCIENCE PRACTICAL - SMITA SHARMA",
+      "X B": "ENGLISH - NAGEENA MOMIN",
+      "XI A": "ENGLISH - VIKAS VERMA",
+      "XI B": "GEOGRAPHY PRACTICAL - N.R. SAHU",
+      "XI C": "BIO PRACTICAL - SMITA SHARMA",
+      "XII A": "ICT DEEPAK",
+      "XII C": "CHEMISTRY - N.P. MEHRA"
     },
     "04:00-04:30": {
-      "IX A": "GAMES",
-      "IX B": "GAMES",
-      "X A": "GAMES",
-      "X B": "GAMES",
-      "XI A": "GAMES",
-      "XI B": "GAMES",
-      "XI C": "GAMES",
-      "XII A": "GAMES",
-      "XII B": "GAMES",
-      "XII C": "GAMES"
+      "IX A": "GAMES - SUNIL UIKEY",
+      "IX B": "GAMES - SUNIL UIKEY",
+      "X A": "GAMES - SUNIL UIKEY",
+      "X B": "GAMES - SUNIL UIKEY",
+      "XI A": "GAMES - SUNIL UIKEY",
+      "XI B": "GAMES - SUNIL UIKEY",
+      "XI C": "GAMES - SUNIL UIKEY",
+      "XII A": "GAMES - SUNIL UIKEY",
+      "XII B": "GAMES - SUNIL UIKEY",
+      "XII C": "GAMES - SUNIL UIKEY"
     },
 },
 "Thursday": {
    "10:50-11:30": {
       "IX A": "ENGLISH - HARERAM VANSHKAR",
       "IX B": "SOCIAL SCIENCE - RAJESH MURKHE",
-      "X A": "ENGLISH - NAGEENA MONIN",
+      "X A": "ENGLISH - NAGEENA MOMIN",
       "X B": "HINDI - SUNIL UIKEY",
-      "XI A & B": "POLITICAL SCIENCE - H.K.THAKUR",
-      "XI C": "MATHS - SHUBHAM CHOURASIYA // BIO - SMITA SHARMA",
+      "XI A": "POLITICAL SCIENCE - H.K. THAKUR",
+      "XI B": "GEOGRAPHY - N.R. SAHU",
+      "XI C": "MATHS - DHARMENDRA NEMA / BIO - SMITA SHARMA",
       "XII A": "HISTORY - MADAN DHEEMAR",
-      "XII B": "GEOGRAPHY - N.R. SAHU",
       "XII C": "CHEMISTRY - N.P. MEHRA"
     },
     "11:30-12:10": {
-      "IX A": "SOCIAL SCIENCE - HARERAM VANSHKAR ",
+      "IX A": "SOCIAL SCIENCE - RAJESH MURKHE",
       "IX B": "HINDI - VINITA CHOURASIYA",
       "X A": "SCIENCE - SMITA SHARMA",
-      "X B": "SOCIAL SCIENCE - H.K.THAKUR",
-      "XI A, B & C": "ENGLISH - HARERAM VANSHKAR // AGRICULTURE - RINKESH THAKUR",
+      "X B": "SOCIAL SCIENCE - H.K. THAKUR",
+      "XI A, B & C": "ENGLISH - HARERAM VANSHKAR / AGRICULTURE - RINKESH THAKUR",
+      "XI C": "ENGLISH - VIKAS VERMA",
       "XII A": "GEOGRAPHY - N.R. SAHU",
-      "XII B": "HISTORY - MADAN DHEEMAR",
       "XII C": "PHYSICS - SHUBHAM CHOURASIYA"
     },
     "12:20-01:00": {
@@ -307,73 +353,86 @@
       "IX B": "SCIENCE - DEEPALI SHARMA",
       "X A": "HINDI - SUNIL UIKEY",
       "X B": "MATHS - DHARMENDRA NEMA",
-      "XI A & B": "GEOGRAPHY - N.R. SAHU",
+      "XI A": "GEOGRAPHY - N.R. SAHU",
+      "XI B":"HISTORY - MADAN DHEEMAR",
       "XI C": "CHEMISTRY - N.P. MEHRA",
-      "XII A & B": "ENGLISH - HARERAM VANSHKAR // AGRICULTURE - RINKESH THAKUR",
-      "XII C": "MATHS - SHUBHAM CHOURASIYA // BIO - SMITA SHARMA",
+      "XII A": "ENGLISH - VIKAS VERMA / AGRICULTURE - RINKESH THAKUR",
+      "XII C": "MATHS - SHUBHAM CHOURASIYA / BIO - SMITA SHARMA"
     },
     "01:00-01:40": {
       "IX A": "MATHS - DHARMENDRA NEMA",
       "IX B": "ENGLSIH - HARERAM VANSHKAR",
-      "X A & B": "IT - UTTAM CHAND DEHRIYA / AG - RINKESH THAKUR / SANSKRIT - VINITA CHOURASIYA",
-      "XI A & B": "HISTORY - MADAN DHEEMAR",
+      "X A & B": "IT - UTTAM CHAND DEHRIYA / AGRICULTURE - RINKESH THAKUR / SANSKRIT - VINITA CHOURASIYA",
+      "XI A": "HISTORY - MADAN DHEEMAR",
+      "XI B": "POLITICAL SCIENCE - H.K. THAKUR",
       "XI C": "PHYSICS - SHUBHAM CHOURASIYA",
       "XII A": "POLITICAL SCIENCE - RAJESH MURKHE",
-      "XII B & C": "HINDI - SUNIL UIKEY",
+      "XII C": "HINDI - SUNIL UIKEY"
     },
-    "02:10-3:00": {
+    "02:10-02:50": {
       "IX A": "SCIENCE - DEEPALI SHARMA",
       "IX B": "MATHS - SHUBHAM CHOURASIYA",
       "X A": "MATHS - DHARMENDRA NEMA",
       "X B": "SCIENCE - SMITA SHARMA",
-      "XI A, B & C": "HINDI - SUNIL UIKEY // IT - UTTAM CHAND DEHRIYA",
+      "XI A & C": "HINDI - SUNIL UIKEY / IT - UTTAM CHAND DEHRIYA",
+      "XI B": "HINDI - VINITA CHOURASIYA / IT - UTTAM CHAND DEHRIYA",
       "XII A": "HINDI - P.S. JHARIYA",
-      "XII B": "POLITICAL SCIENCE - H.K. THAKUR",
-      "XII C": "ENGLISH - VIKAS VERMA",
+      "XII C": "ENGLISH - VIKAS VERMA"
     },
-    "03:00-04:00": {
-      "IX A & B": "IT - UTTAM CHAND DEHRIYA / RINKESH THAKUR - AG / SANSKRIT - VINITA CHOURASIYA",
+    "02:50-03:30": {
+      "IX A & B": "IT - UTTAM CHAND DEHRIYA / AGRICULTURE - RINKESH THAKUR / SANSKRIT - VINITA CHOURASIYA",
       "X A": "SOCIAL SCIENCE - MADAN DHEEMAR",
       "X B": "ENGLSIH - NAGEENA MOMIN",
-      "XI A": "POLITICAL SCIENCE - H.K. THAKUR",
-      "XI B": "HINDI - SUNIL UIKEY",
-      "XI C": "CHEMISTRY PRACTICAL - N.P. MEHRA",
-      "XII A & B": "GEOGRAPHY PRACTICAL - N.R. SAHU",
-      "XII C": "PHYSICS PRACTICAL - SHUBHAM CHOURASIYA"
+      "XI A": "HISTORY - MADAN DHEEMAR",
+      "XI B": "POLITICAL SCIENCE - H.K. THAKUR",
+      "XI C": "BIOLOGY PRACTICAL - SMITA SHARMA",
+      "XII A": "ICT - DEEPAK",
+      "XII C": "CHEMISTRY PRACTICAL - N.P. MEHRA"
+    },
+    "03:30-04:00": {
+      "IX A": "ENGLISH - HARERAM VANSHKAR",
+      "IX B": "SCIENCE PRACTICAL - N.P. MEHRA",
+      "X A": "SCIENCE PRACTICAL - SMITA SHARMA",
+      "X B": "ENGLISH - NAGEENA MOMIN",
+      "XI A": "ENGLISH - VIKAS VERMA",
+      "XI B": "GEOGRAPHY PRACTICAL - N.R. SAHU",
+      "XI C": "BIO PRACTICAL - SMITA SHARMA",
+      "XII A": "ICT DEEPAK",
+      "XII C": "CHEMISTRY - N.P. MEHRA"
     },
     "04:00-04:30": {
-      "IX A": "GAMES",
-      "IX B": "GAMES",
-      "X A": "GAMES",
-      "X B": "GAMES",
-      "XI A": "GAMES",
-      "XI B": "GAMES",
-      "XI C": "GAMES",
-      "XII A": "GAMES",
-      "XII B": "GAMES",
-      "XII C": "GAMES"
+      "IX A": "GAMES - SUNIL UIKEY",
+      "IX B": "GAMES - SUNIL UIKEY",
+      "X A": "GAMES - SUNIL UIKEY",
+      "X B": "GAMES - SUNIL UIKEY",
+      "XI A": "GAMES - SUNIL UIKEY",
+      "XI B": "GAMES - SUNIL UIKEY",
+      "XI C": "GAMES - SUNIL UIKEY",
+      "XII A": "GAMES - SUNIL UIKEY",
+      "XII B": "GAMES - SUNIL UIKEY",
+      "XII C": "GAMES - SUNIL UIKEY"
     },
 },
 "Friday": {
    "10:50-11:30": {
       "IX A": "ENGLISH - HARERAM VANSHKAR",
       "IX B": "SOCIAL SCIENCE - RAJESH MURKHE",
-      "X A": "ENGLISH - NAGEENA MONIN",
+      "X A": "ENGLISH - NAGEENA MOMIN",
       "X B": "HINDI - SUNIL UIKEY",
-      "XI A & B": "POLITICAL SCIENCE - H.K.THAKUR",
-      "XI C": "MATHS - SHUBHAM CHOURASIYA // BIO - SMITA SHARMA",
+      "XI A": "POLITICAL SCIENCE - H.K. THAKUR",
+      "XI B": "GEOGRAPHY - N.R. SAHU",
+      "XI C": "MATHS - DHARMENDRA NEMA / BIO - SMITA SHARMA",
       "XII A": "HISTORY - MADAN DHEEMAR",
-      "XII B": "GEOGRAPHY - N.R. SAHU",
       "XII C": "CHEMISTRY - N.P. MEHRA"
     },
     "11:30-12:10": {
-      "IX A": "SOCIAL SCIENCE - HARERAM VANSHKAR ",
+      "IX A": "SOCIAL SCIENCE - RAJESH MURKHE",
       "IX B": "HINDI - VINITA CHOURASIYA",
       "X A": "SCIENCE - SMITA SHARMA",
-      "X B": "SOCIAL SCIENCE - H.K.THAKUR",
-      "XI A, B & C": "ENGLISH - HARERAM VANSHKAR // AGRICULTURE - RINKESH THAKUR",
+      "X B": "SOCIAL SCIENCE - H.K. THAKUR",
+      "XI A, B & C": "ENGLISH - HARERAM VANSHKAR / AGRICULTURE - RINKESH THAKUR",
+      "XI C": "ENGLISH - VIKAS VERMA",
       "XII A": "GEOGRAPHY - N.R. SAHU",
-      "XII B": "HISTORY - MADAN DHEEMAR",
       "XII C": "PHYSICS - SHUBHAM CHOURASIYA"
     },
     "12:20-01:00": {
@@ -381,73 +440,86 @@
       "IX B": "SCIENCE - DEEPALI SHARMA",
       "X A": "HINDI - SUNIL UIKEY",
       "X B": "MATHS - DHARMENDRA NEMA",
-      "XI A & B": "GEOGRAPHY - N.R. SAHU",
+      "XI A": "GEOGRAPHY - N.R. SAHU",
+      "XI B":"HISTORY - MADAN DHEEMAR",
       "XI C": "CHEMISTRY - N.P. MEHRA",
-      "XII A & B": "ENGLISH - HARERAM VANSHKAR // AGRICULTURE - RINKESH THAKUR",
-      "XII C": "MATHS - SHUBHAM CHOURASIYA // BIO - SMITA SHARMA",
+      "XII A": "ENGLISH - VIKAS VERMA / AGRICULTURE - RINKESH THAKUR",
+      "XII C": "MATHS - SHUBHAM CHOURASIYA / BIO - SMITA SHARMA"
     },
     "01:00-01:40": {
       "IX A": "MATHS - DHARMENDRA NEMA",
       "IX B": "ENGLSIH - HARERAM VANSHKAR",
-      "X A & B": "IT - UTTAM CHAND DEHRIYA / AG - RINKESH THAKUR / SANSKRIT - VINITA CHOURASIYA",
-      "XI A & B": "HISTORY - MADAN DHEEMAR",
+      "X A & B": "IT - UTTAM CHAND DEHRIYA / AGRICULTURE - RINKESH THAKUR / SANSKRIT - VINITA CHOURASIYA",
+      "XI A": "HISTORY - MADAN DHEEMAR",
+      "XI B": "POLITICAL SCIENCE - H.K. THAKUR",
       "XI C": "PHYSICS - SHUBHAM CHOURASIYA",
       "XII A": "POLITICAL SCIENCE - RAJESH MURKHE",
-      "XII B & C": "HINDI - SUNIL UIKEY",
+      "XII C": "HINDI - SUNIL UIKEY"
     },
-    "02:10-3:00": {
+    "02:10-02:50": {
       "IX A": "SCIENCE - DEEPALI SHARMA",
       "IX B": "MATHS - SHUBHAM CHOURASIYA",
       "X A": "MATHS - DHARMENDRA NEMA",
       "X B": "SCIENCE - SMITA SHARMA",
-      "XI A, B & C": "HINDI - SUNIL UIKEY // IT - UTTAM CHAND DEHRIYA",
+      "XI A & C": "HINDI - SUNIL UIKEY / IT - UTTAM CHAND DEHRIYA",
+      "XI B": "HINDI - VINITA CHOURASIYA / IT - UTTAM CHAND DEHRIYA",
       "XII A": "HINDI - P.S. JHARIYA",
-      "XII B": "POLITICAL SCIENCE - H.K. THAKUR",
-      "XII C": "ENGLISH - VIKAS VERMA",
+      "XII C": "ENGLISH - VIKAS VERMA"
     },
-    "03:00-04:00": {
-      "IX A & B": "IT - UTTAM CHAND DEHRIYA / RINKESH THAKUR - AG / SANSKRIT - VINITA CHOURASIYA",
+    "02:50-03:30": {
+      "IX A & B": "IT - UTTAM CHAND DEHRIYA / AGRICULTURE - RINKESH THAKUR / SANSKRIT - VINITA CHOURASIYA",
       "X A": "SOCIAL SCIENCE - MADAN DHEEMAR",
       "X B": "ENGLSIH - NAGEENA MOMIN",
-      "XI A": "HINDI - SUNIL UIKEY",
-      "XI B": "HISTORY - MADAN DHEEMAR",
-      "XI C": "PHYSICS PRACTICAL - SHUBHAM CHOURASIYA",
-      "XII A & B": "GEOGRAPHY PRACTICAL - N.R. SAHU",
-      "XII C": "BIOLOGY PRACTICAL - SMITA SHARMA"
+      "XI A": "HISTORY - MADAN DHEEMAR",
+      "XI B": "POLITICAL SCIENCE - H.K. THAKUR",
+      "XI C": "BIOLOGY PRACTICAL - SMITA SHARMA",
+      "XII A": "ICT - DEEPAK",
+      "XII C": "CHEMISTRY PRACTICAL - N.P. MEHRA"
+    },
+    "03:30-04:00": {
+      "IX A": "ENGLISH - HARERAM VANSHKAR",
+      "IX B": "SCIENCE PRACTICAL - N.P. MEHRA",
+      "X A": "SCIENCE PRACTICAL - SMITA SHARMA",
+      "X B": "ENGLISH - NAGEENA MOMIN",
+      "XI A": "ENGLISH - VIKAS VERMA",
+      "XI B": "GEOGRAPHY PRACTICAL - N.R. SAHU",
+      "XI C": "BIO PRACTICAL - SMITA SHARMA",
+      "XII A": "ICT DEEPAK",
+      "XII C": "CHEMISTRY - N.P. MEHRA"
     },
     "04:00-04:30": {
-      "IX A": "GAMES",
-      "IX B": "GAMES",
-      "X A": "GAMES",
-      "X B": "GAMES",
-      "XI A": "GAMES",
-      "XI B": "GAMES",
-      "XI C": "GAMES",
-      "XII A": "GAMES",
-      "XII B": "GAMES",
-      "XII C": "GAMES"
+      "IX A": "GAMES - SUNIL UIKEY",
+      "IX B": "GAMES - SUNIL UIKEY",
+      "X A": "GAMES - SUNIL UIKEY",
+      "X B": "GAMES - SUNIL UIKEY",
+      "XI A": "GAMES - SUNIL UIKEY",
+      "XI B": "GAMES - SUNIL UIKEY",
+      "XI C": "GAMES - SUNIL UIKEY",
+      "XII A": "GAMES - SUNIL UIKEY",
+      "XII B": "GAMES - SUNIL UIKEY",
+      "XII C": "GAMES - SUNIL UIKEY"
     },
 },
 "Saturday": {
    "10:50-11:30": {
       "IX A": "ENGLISH - HARERAM VANSHKAR",
       "IX B": "SOCIAL SCIENCE - RAJESH MURKHE",
-      "X A": "ENGLISH - NAGEENA MONIN",
+      "X A": "ENGLISH - NAGEENA MOMIN",
       "X B": "HINDI - SUNIL UIKEY",
-      "XI A & B": "POLITICAL SCIENCE - H.K.THAKUR",
-      "XI C": "MATHS - SHUBHAM CHOURASIYA // BIO - SMITA SHARMA",
+      "XI A": "POLITICAL SCIENCE - H.K. THAKUR",
+      "XI B": "GEOGRAPHY - N.R. SAHU",
+      "XI C": "MATHS - DHARMENDRA NEMA / BIO - SMITA SHARMA",
       "XII A": "HISTORY - MADAN DHEEMAR",
-      "XII B": "GEOGRAPHY - N.R. SAHU",
       "XII C": "CHEMISTRY - N.P. MEHRA"
     },
     "11:30-12:10": {
-      "IX A": "SOCIAL SCIENCE - HARERAM VANSHKAR ",
+      "IX A": "SOCIAL SCIENCE - RAJESH MURKHE",
       "IX B": "HINDI - VINITA CHOURASIYA",
       "X A": "SCIENCE - SMITA SHARMA",
-      "X B": "SOCIAL SCIENCE - H.K.THAKUR",
-      "XI A, B & C": "ENGLISH - HARERAM VANSHKAR // AGRICULTURE - RINKESH THAKUR",
+      "X B": "SOCIAL SCIENCE - H.K. THAKUR",
+      "XI A, B & C": "ENGLISH - HARERAM VANSHKAR / AGRICULTURE - RINKESH THAKUR",
+      "XI C": "ENGLISH - VIKAS VERMA",
       "XII A": "GEOGRAPHY - N.R. SAHU",
-      "XII B": "HISTORY - MADAN DHEEMAR",
       "XII C": "PHYSICS - SHUBHAM CHOURASIYA"
     },
     "12:20-01:00": {
@@ -455,55 +527,138 @@
       "IX B": "SCIENCE - DEEPALI SHARMA",
       "X A": "HINDI - SUNIL UIKEY",
       "X B": "MATHS - DHARMENDRA NEMA",
-      "XI A & B": "GEOGRAPHY - N.R. SAHU",
+      "XI A": "GEOGRAPHY - N.R. SAHU",
+      "XI B":"HISTORY - MADAN DHEEMAR",
       "XI C": "CHEMISTRY - N.P. MEHRA",
-      "XII A & B": "ENGLISH - HARERAM VANSHKAR // AGRICULTURE - RINKESH THAKUR",
-      "XII C": "MATHS - SHUBHAM CHOURASIYA // BIO - SMITA SHARMA",
+      "XII A": "ENGLISH - VIKAS VERMA / AGRICULTURE - RINKESH THAKUR",
+      "XII C": "MATHS - SHUBHAM CHOURASIYA / BIO - SMITA SHARMA"
     },
     "01:00-01:40": {
       "IX A": "MATHS - DHARMENDRA NEMA",
       "IX B": "ENGLSIH - HARERAM VANSHKAR",
-      "X A & B": "IT - UTTAM CHAND DEHRIYA / AG - RINKESH THAKUR / SANSKRIT - VINITA CHOURASIYA",
-      "XI A & B": "HISTORY - MADAN DHEEMAR",
+      "X A & B": "IT - UTTAM CHAND DEHRIYA / AGRICULTURE - RINKESH THAKUR / SANSKRIT - VINITA CHOURASIYA",
+      "XI A": "HISTORY - MADAN DHEEMAR",
+      "XI B": "POLITICAL SCIENCE - H.K. THAKUR",
       "XI C": "PHYSICS - SHUBHAM CHOURASIYA",
       "XII A": "POLITICAL SCIENCE - RAJESH MURKHE",
-      "XII B & C": "HINDI - SUNIL UIKEY",
+      "XII C": "HINDI - SUNIL UIKEY"
     },
-    "02:10-3:00": {
+    "02:10-02:50": {
       "IX A": "SCIENCE - DEEPALI SHARMA",
       "IX B": "MATHS - SHUBHAM CHOURASIYA",
       "X A": "MATHS - DHARMENDRA NEMA",
       "X B": "SCIENCE - SMITA SHARMA",
-      "XI A, B & C": "HINDI - SUNIL UIKEY // IT - UTTAM CHAND DEHRIYA",
+      "XI A & C": "HINDI - SUNIL UIKEY / IT - UTTAM CHAND DEHRIYA",
+      "XI B": "HINDI - VINITA CHOURASIYA / IT - UTTAM CHAND DEHRIYA",
       "XII A": "HINDI - P.S. JHARIYA",
-      "XII B": "POLITICAL SCIENCE - H.K. THAKUR",
-      "XII C": "ENGLISH - VIKAS VERMA",
+      "XII C": "ENGLISH - VIKAS VERMA"
     },
-    "03:00-04:00": {
-      "IX A & B": "IT - UTTAM CHAND DEHRIYA / RINKESH THAKUR - AG / SANSKRIT - VINITA CHOURASIYA",
+    "02:50-03:30": {
+      "IX A & B": "IT - UTTAM CHAND DEHRIYA / AGRICULTURE - RINKESH THAKUR / SANSKRIT - VINITA CHOURASIYA",
       "X A": "SOCIAL SCIENCE - MADAN DHEEMAR",
       "X B": "ENGLSIH - NAGEENA MOMIN",
-      "XI A": "HINDI - SUNIL UIKEY",
-      "XI B": "HISTORY - MADAN DHEEMAR",
-      "XI C": "PHYSICS PRACTICAL - SHUBHAM CHOURASIYA",
-      "XII A & B": "GEOGRAPHY PRACTICAL - N.R. SAHU",
-      "XII C": "BIOLOGY PRACTICAL - SMITA SHARMA"
+      "XI A": "HISTORY - MADAN DHEEMAR",
+      "XI B": "POLITICAL SCIENCE - H.K. THAKUR",
+      "XI C": "BIOLOGY PRACTICAL - SMITA SHARMA",
+      "XII A": "ICT - DEEPAK",
+      "XII C": "CHEMISTRY PRACTICAL - N.P. MEHRA"
+    },
+    "03:30-04:00": {
+      "IX A": "ENGLISH - HARERAM VANSHKAR",
+      "IX B": "SCIENCE PRACTICAL - N.P. MEHRA",
+      "X A": "SCIENCE PRACTICAL - SMITA SHARMA",
+      "X B": "ENGLISH - NAGEENA MOMIN",
+      "XI A": "ENGLISH - VIKAS VERMA",
+      "XI B": "GEOGRAPHY PRACTICAL - N.R. SAHU",
+      "XI C": "BIO PRACTICAL - SMITA SHARMA",
+      "XII A": "ICT DEEPAK",
+      "XII C": "CHEMISTRY - N.P. MEHRA"
     },
     "04:00-04:30": {
-      "IX A": "GAMES",
-      "IX B": "GAMES",
-      "X A": "GAMES",
-      "X B": "GAMES",
-      "XI A": "GAMES",
-      "XI B": "GAMES",
-      "XI C": "GAMES",
-      "XII A": "GAMES",
-      "XII B": "GAMES",
-      "XII C": "GAMES"
+      "IX A": "GAMES - SUNIL UIKEY",
+      "IX B": "GAMES - SUNIL UIKEY",
+      "X A": "GAMES - SUNIL UIKEY",
+      "X B": "GAMES - SUNIL UIKEY",
+      "XI A": "GAMES - SUNIL UIKEY",
+      "XI B": "GAMES - SUNIL UIKEY",
+      "XI C": "GAMES - SUNIL UIKEY",
+      "XII A": "GAMES - SUNIL UIKEY",
+      "XII B": "GAMES - SUNIL UIKEY",
+      "XII C": "GAMES - SUNIL UIKEY"
     },
 }
   
 };
+
+function getTeacherImageHTML(entryText) {
+  const teacherNames = [];
+  const parts = entryText.split(/[/|\\]|\/\/|,|&|और| तथा /);
+
+  parts.forEach(part => {
+    const match = part.match(/- (.+)/);
+    if (match) {
+      teacherNames.push(match[1].trim().toUpperCase());
+    }
+  });
+
+  return teacherNames.map(name => {
+    const imageName = name.replace(/\s+/g, "_");
+    return `<div style="display:inline-block; text-align:center; margin:4px;">
+      <img src="photos/${imageName}.jpg" alt="${name}" width="60" height="60" style="border-radius:50%; border:1px solid #ccc;"><br>
+      <small><a href="#" onclick="showTeacherSchedule('${name.replace(/'/g, "\\'")}')">${name}</a></small>
+    </div>`;
+  }).join("");
+}
+
+
+function showTeacherSchedule(name) {
+  const teacherDiv = document.getElementById("teacherSchedule");
+  let html = `<h4>${name} के पीरियड्स:</h4><table border="1"><tr><th>दिन</th><th>समय</th><th>क्लास</th><th>विषय</th></tr>`;
+  name = name.toUpperCase();
+
+  const addedRows = new Map(); // 🔁 डुप्लिकेट रोकने के लिए Map
+
+  for (let day in timetable) {
+    for (let period in timetable[day]) {
+      let classes = [];
+      let subject = "";
+
+      for (let cls in timetable[day][period]) {
+        const entry = timetable[day][period][cls];
+        const parts = entry.split(/[/|\\]|\/\/|,|&|और| तथा /);
+
+        for (let part of parts) {
+          const match = part.match(/(.+)-(.+)/);
+          if (match) {
+            const teacher = match[2].trim().toUpperCase();
+            const subj = match[1].trim();
+
+            if (teacher === name) {
+              classes.push(cls);
+              subject = subj;
+            }
+          }
+        }
+      }
+
+      // एक ही दिन/समय के लिए अगर टीचर है, तो जोड़ो एक बार
+      if (classes.length > 0) {
+        const key = `${day}-${period}-${subject}`;
+        if (!addedRows.has(key)) {
+          const classList = [...new Set(classes)].join(", ");
+          html += `<tr><td>${day}</td><td>${period}</td><td>${classList}</td><td>${subject}</td></tr>`;
+          addedRows.set(key, true);
+        }
+      }
+    }
+  }
+
+  html += '</table>';
+  teacherDiv.innerHTML = html;
+  window.scrollTo(0, document.body.scrollHeight);
+}
+
+
 
   function showTimetable() {
   const day = document.getElementById('daySelect').value;
@@ -518,7 +673,8 @@
 
   for (let cls in periodData) {
     const entry = periodData[cls];
-    html += `<tr><td>${cls}</td><td>${entry}</td></tr>`;
+    const teacherImages = getTeacherImageHTML(entry);
+    html += `<tr><td>${cls}</td><td>${entry}<br>${teacherImages}</td></tr>`;
 
     // सभी उप-एंट्रीज निकालना (/, //, &, आदि से)
     const parts = entry.split(/[/|\\]|\/\/|,|&|और| तथा /);
