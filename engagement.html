@@ -12,6 +12,7 @@
     li { margin-bottom: 5px; }
     .substitute-info { margin-top: 20px; padding: 10px; border: 1px solid #aaa; background: #f9f9f9; }
     .highlight { font-weight: bold; color: green; }
+    
   </style>
 </head>
 <body>
@@ -19,9 +20,9 @@
   <nav>
     <a href="index.html">📅 टाइमटेबल</a>
     <a href="karyabhar.html">📘 कार्यभार</a>
-    
+    <a href="substitutes.html">📘 आज के एंगेज टीचर देखें</a> 
   </nav>
-
+  <h1>सोमवार से शनिवार एंगेजमेंट लगाने का समय सुबह 10ः30 बजे से सुबह 10ः50 तक रहेगा</h1>
   <h2>👨‍🏫 अवकाश पर शिक्षक चुनें</h2>
   <p>जो शिक्षक अवकाश पर हैं उन्हें नीचे से चुनें:</p>
 
@@ -177,98 +178,100 @@
       const leaveTeachers = [...document.querySelectorAll('input[type="checkbox"]:checked')].map(cb => cb.value);
       localStorage.setItem("leaveTeachers", JSON.stringify(leaveTeachers));
       showSubstituteMessage();
+      document.getElementById('substituteInfo').innerHTML += `<br><br><a href="substitutes.html" target="_blank">📄 सब्स्टीट्यूट ड्यूटी देखें</a>`;
     }
 
     function clearLeave() {
       localStorage.removeItem("leaveTeachers");
+      localStorage.removeItem("substituteAssignments");
       location.reload();
     }
 
-  function showSubstituteMessage() {
-  const infoDiv = document.getElementById("substituteInfo");
-  const leaveTeachers = JSON.parse(localStorage.getItem("leaveTeachers")) || [];
-  let messages = [];
+    function showSubstituteMessage() {
+      const infoDiv = document.getElementById("substituteInfo");
+      const leaveTeachers = JSON.parse(localStorage.getItem("leaveTeachers")) || [];
+      const existingAssignments = JSON.parse(localStorage.getItem("substituteAssignments")) || {};
+      const engagedByTime = {};
+      let messages = [];
 
-  const engagedByTime = {};  // { "Monday-10:50-11:30": Set(teacher names) }
+      for (let day in timetable) {
+        for (let time in timetable[day]) {
+          const key = `${day}-${time}`;
+          engagedByTime[key] = new Set();
 
-  // Step 1: Prepare engagedByTime
-  for (let day in timetable) {
-    for (let time in timetable[day]) {
-      const key = `${day}-${time}`;
-      engagedByTime[key] = new Set();
-
-      const periodData = timetable[day][time];
-      for (let cls in periodData) {
-        const entry = periodData[cls];
-        const parts = entry.split(/[/|\\]|\/\/|,|&|और| तथा /);
-
-        parts.forEach(part => {
-          const teacher = part.split(" - ")[1]?.trim().toUpperCase();
-          if (teacher && teachers.includes(teacher)) {
-            engagedByTime[key].add(teacher);
-          }
-        });
-      }
-    }
-  }
-
-  // Step 2: For each leave teacher, find actual vacant teachers at their periods
-  leaveTeachers.forEach(leaveTeacher => {
-    const assignedMessages = [];
-    const uniqueKeys = new Set();
-
-    for (let day in timetable) {
-      for (let time in timetable[day]) {
-        const periodData = timetable[day][time];
-
-        for (let cls in periodData) {
-          const entry = periodData[cls];
-          const parts = entry.split(/[/|\\]|\/\/|,|&|और| तथा /);
-
-          parts.forEach(part => {
-            const teacher = part.split(" - ")[1]?.trim().toUpperCase();
-            if (teacher === leaveTeacher.toUpperCase()) {
-              const key = `${day}-${time}-${teacher}`;
-              if (uniqueKeys.has(key)) return;
-              uniqueKeys.add(key);
-
-              // Find vacant teachers at this time
-              const timeKey = `${day}-${time}`;
-              const engagedSet = engagedByTime[timeKey];
-              const vacantTeachers = teachers.filter(t =>
-                !leaveTeachers.includes(t) &&
-                !engagedSet.has(t)
-              );
-
-              if (vacantTeachers.length === 0) {
-                assignedMessages.push(`आज <span class="highlight">${leaveTeacher}</span> छुट्टी पर हैं, लेकिन ${periodMap[time] || time} पीरियड में कोई उपलब्ध शिक्षक नहीं है।`);
-              } else {
-                const substitute = vacantTeachers[Math.floor(Math.random() * vacantTeachers.length)];
-                const gender = teacherGender[substitute] === "female" ? "पढ़ायेंगी" : "पढ़ाएंगे";
-                const hindiPeriod = periodMap[time] || time;
-
-                assignedMessages.push(
-                  `आज <span class="highlight">${leaveTeacher}</span> छुट्टी पर हैं, उनकी जगह <span class="highlight">${substitute}</span> ${hindiPeriod} पीरियड में ${gender}।`
-                );
-
-                // अब substitute को उस समय के लिए engaged मानें
-                engagedSet.add(substitute);
+          const periodData = timetable[day][time];
+          for (let cls in periodData) {
+            const parts = periodData[cls].split(/[/|\\]|\/\/|,|&|और| तथा /);
+            parts.forEach(part => {
+              const teacher = part.split(" - ")[1]?.trim().toUpperCase();
+              if (teacher && teachers.includes(teacher)) {
+                engagedByTime[key].add(teacher);
               }
-            }
-          });
+            });
+          }
         }
       }
-    }
 
-    if (assignedMessages.length === 0) {
-      messages.push(`आज <span class="highlight">${leaveTeacher}</span> का कोई पीरियड नहीं है।`);
-    } else {
-      messages.push(...assignedMessages);
-    }
-  });
+      leaveTeachers.forEach(leaveTeacher => {
+        const assignedMessages = [];
+        const uniqueKeys = new Set();
 
-  infoDiv.innerHTML = messages.length ? messages.join("<br><br>") : "कोई भी शिक्षक अवकाश पर नहीं है।";
-}
+        for (let day in timetable) {
+          for (let time in timetable[day]) {
+            const periodData = timetable[day][time];
+
+            for (let cls in periodData) {
+              const parts = periodData[cls].split(/[/|\\]|\/\/|,|&|और| तथा /);
+              parts.forEach(part => {
+                const teacher = part.split(" - ")[1]?.trim().toUpperCase();
+                if (teacher === leaveTeacher.toUpperCase()) {
+                  const key = `${day}-${time}-${teacher}`;
+                  if (uniqueKeys.has(key)) return;
+                  uniqueKeys.add(key);
+
+                  const timeKey = `${day}-${time}`;
+                  const engagedSet = engagedByTime[timeKey];
+                  const substituteKey = `${leaveTeacher}-${day}-${time}`;
+
+                  let substitute = existingAssignments[substituteKey];
+
+                  if (!substitute) {
+                    const vacant = teachers.filter(t =>
+                    t !== "UTTAM CHAND DEHRIYA" &&             // <-- यहाँ ब्लॉक किया
+                    !leaveTeachers.includes(t) &&
+                    !engagedSet.has(t)
+                    );
+                    if (vacant.length === 0) {
+                      assignedMessages.push(`आज <span class="highlight">${leaveTeacher}</span> छुट्टी पर हैं, लेकिन ${periodMap[time] || time} पीरियड में कोई उपलब्ध शिक्षक नहीं है।`);
+                      return;
+                    } else {
+                      substitute = vacant[Math.floor(Math.random() * vacant.length)];
+                      existingAssignments[substituteKey] = substitute;
+                    }
+                  }
+
+                  const gender = teacherGender[substitute] === "female" ? "पढ़ायेंगी" : "पढ़ाएंगे";
+                  const hindiPeriod = periodMap[time] || time;
+
+                  assignedMessages.push(`आज <span class="highlight">${leaveTeacher}</span> छुट्टी पर हैं, उनकी जगह <span class="highlight">${substitute}</span> ${hindiPeriod} पीरियड में ${gender}।`);
+                  engagedSet.add(substitute);
+                }
+              });
+            }
+          }
+        }
+
+        if (assignedMessages.length === 0) {
+          messages.push(`आज <span class="highlight">${leaveTeacher}</span> का कोई पीरियड नहीं है।`);
+        } else {
+          messages.push(...assignedMessages);
+        }
+      });
+
+      localStorage.setItem("substituteAssignments", JSON.stringify(existingAssignments));
+      infoDiv.innerHTML = messages.length ? messages.join("<br><br>") : "कोई भी शिक्षक अवकाश पर नहीं है।";
+    }
   </script>
+
 </body>
 </html>
