@@ -3,65 +3,191 @@
 <head>
   <meta charset="UTF-8">
   <title>स्कूल टाइमटेबल</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-   
   <style>
-    body { font-family: sans-serif; padding: 20px; }
-    select, table { margin: 10px 0; }
-    table { border-collapse: collapse; width: 100%; }
-    th, td { border: 1px solid #aaa; padding: 8px; text-align: center; }
-    th { background-color: #f0f0f0; }
-    .vacant { background-color: #e0ffe0; }
-    nav { background: #f0f0f0; padding: 10px; margin-bottom: 20px; }
-    nav a { margin-right: 15px; text-decoration: none; font-weight: bold; color: #333; }
+    :root {
+      --primary-color: #007bff;
+      --background: #f5f7fa;
+      --card-bg: white;
+      --border-color: #ddd;
+      --text-color: #333;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--background);
+      margin: 0;
+      padding: 10px;
+      color: var(--text-color);
+    }
+
+    nav {
+      background: var(--primary-color);
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      font-weight: bold;
+      margin: 0 10px;
+      text-decoration: none;
+      padding: 6px 10px;
+      display: inline-block;
+    }
+
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 6px;
+    }
+
+    h2, h3, h4 {
+      text-align: center;
+      color: var(--primary-color);
+    }
+
+    select, button {
+      padding: 8px;
+      margin: 5px 5px 15px 0;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+    }
+
+    button {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 20px;
+      background: var(--card-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    th, td {
+      border: 1px solid var(--border-color);
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background: #e0ecff;
+      font-weight: bold;
+    }
+
+    ul#vacantTeachers {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul#vacantTeachers li {
+      background: #fff;
+      padding: 8px;
+      margin: 4px 0;
+      border-radius: 6px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    img {
+      border-radius: 50%;
+      border: 2px solid #ccc;
+    }
+
+    @media (max-width: 600px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      th, td {
+        text-align: left;
+      }
+
+      th {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      td {
+        border: none;
+        border-bottom: 1px solid var(--border-color);
+        padding-left: 50%;
+        position: relative;
+      }
+
+      td::before {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 45%;
+        white-space: nowrap;
+        font-weight: bold;
+      }
+
+      table tr {
+        margin-bottom: 1rem;
+      }
+    }
   </style>
 </head>
 <body>
 
-<nav>
-    
+  <nav>
     <a href="karyabhar.html">📘 कार्यभार</a>
     <a href="engagement.html">👨‍🏫 एंगेजमेंट</a>
-    <a href="substitutes.html">📘 आज के एंगेज टीचर देखें</a>
+    <a href="substitutes.html">📘 आज के एंगेज टीचर</a>
   </nav>
 
+  <h2>📅 डायनामिक स्कूल टाइमटेबल <br>शा. उ.मा. वि. गोरखपुर (2025-26)</h2>
 
+  <div style="text-align:center;">
+    <label>दिन चुनें:
+      <select id="daySelect">
+        <option value="Monday">सोमवार</option>
+        <option value="Tuesday">मंगलवार</option>
+        <option value="Wednesday">बुधवार</option>
+        <option value="Thursday">गुरुवार</option>
+        <option value="Friday">शुक्रवार</option>
+        <option value="Saturday">शनिवार</option>
+      </select>
+    </label>
 
-  <h2>📅डायनामिक स्कूल टाइमटेबल <br><br> शासकीय उ.मा.वि. गोरखपुर सत्र: 2025-26 </h2>
+    <label>पीरियड:
+      <select id="periodSelect">
+        <option value="10:50-11:30">10:50-11:30 Ist</option>
+        <option value="11:30-12:10">11:30-12:10 IInd</option>
+        <option value="12:20-01:00">12:20-01:00 IIIrd</option>
+        <option value="01:00-01:40">01:00-01:40 IVth</option>
+        <option value="02:10-02:50">02:10-02:50 Vth</option>
+        <option value="02:50-03:30">02:50-03:30 VIth</option>
+        <option value="03:30-04:00">03:30-04:00 VIIth</option>
+        <option value="04:00-04:30">04:00-04:30 VIIIth</option>
+      </select>
+    </label>
 
-  <label>दिन चुनें: 
-    <select id="daySelect">
-       <option value="Monday">सोमवार</option>
-      <option value="Tuesday">मंगलवार</option>
-      <option value="Wednesday">बुधवार</option>
-      <option value="Thursday">गुरुवार</option>
-      <option value="Friday">शुक्रवार</option>
-      <option value="Saturday">शनिवार</option>
-    </select>
-  </label>
+    <button onclick="showTimetable()">🧐 शो टाइमटेबल</button>
+  </div>
 
-  <label>पीरियड टाइम चुनें:
-    <select id="periodSelect">
-      <option value="10:50-11:30">10:50-11:30 Ist</option>
-      <option value="11:30-12:10">11:30-12:10 IInd</option>
-      <option value="12:20-01:00">12:20-01:00 IIIrd</option>
-      <option value="01:00-01:40">01:00-01:40 IVth</option>
-      <option value="02:10-02:50">02:10-02:50 Vth</option>
-      <option value="02:50-03:30">02:50-03:30 VIth</option>
-      <option value="03:30-04:00">03:30-04:00 VIIth</option>
-      <option value="04:00-04:30">04:00-04:30 VIIIth</option>
-    </select>
-  </label>
-
-  <button onclick="showTimetable()">🧐 शो टाइमटेबल</button>
-
-  <h3>📚 क्लास वाइज शेड्यूल:</h3>
+  <h3>📚 क्लास वाइज शेड्यूल</h3>
   <div id="classTable"></div>
 
-  <h3>🧑‍🏫 चयनित शिक्षक के सभी पीरियड्स:</h3>
+  <h3>🧑‍🏫 चयनित शिक्षक के सभी पीरियड्स</h3>
   <div id="teacherSchedule"></div>
 
-  <h3>🧑‍🏫 खाली टीचर्स:</h3>
+  <h3>🧑‍🏫 खाली टीचर्स</h3>
   <ul id="vacantTeachers"></ul>
 
   <script>
@@ -70,7 +196,7 @@
       "P.S. JHARIYA", "H.K. THAKUR", "N.R. SAHU", "RAJESH MURKHE", "SUNIL UIKEY", "VIKAS VERMA",
       "UTTAM CHAND DEHRIYA", "RINKESH THAKUR", "MADAN DHEEMAR", "N.P. MEHRA", "HARERAM VANSHKAR",
       "VINITA CHOURASIYA", "DHARMENDRA NEMA", "SHUBHAM CHOURASIYA", "NAGEENA MOMIN", "DEEPALI SHARMA",
-      "SMITA SHARMA", "DEEPAK"
+      "SMITA SHARMA", "DEEPAK", "R.K. ORIYA", "BABLI CHOUDHARY"
     ];
 
     // डेमो टाइमटेबल (आप इसमें बाकी क्लास जोड़ सकते हैं)
@@ -718,5 +844,30 @@ function showTeacherSchedule(name) {
     : `<li>कोई टीचर खाली नहीं है</li>`;
 }
   </script>
+
+<script>
+  // Right-click disable
+  document.addEventListener('contextmenu', e => e.preventDefault());
+
+  // Text selection disable
+  document.addEventListener('selectstart', e => e.preventDefault());
+
+  // Keyboard shortcut block (Ctrl+U, Ctrl+C, Ctrl+S, Ctrl+A)
+  document.addEventListener('keydown', function (e) {
+    if (e.ctrlKey && ['u', 'c', 's', 'a'].includes(e.key.toLowerCase())) {
+      e.preventDefault();
+    }
+  });
+
+  // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C disable
+  document.onkeydown = function (e) {
+    if (e.keyCode === 123 || 
+        (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase()))) {
+      return false;
+    }
+  };
+</script>
+
+
 </body>
 </html>

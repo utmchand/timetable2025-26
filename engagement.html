@@ -4,16 +4,95 @@
   <meta charset="UTF-8">
   <title>Engagement - अवकाश शिक्षक चयन</title>
   <style>
-    body { font-family: sans-serif; padding: 20px; }
-    nav { background: #f0f0f0; padding: 10px; margin-bottom: 20px; }
-    nav a { margin-right: 15px; text-decoration: none; font-weight: bold; color: #333; }
-    h2 { margin-top: 0; }
-    ul { list-style: none; padding: 0; }
-    li { margin-bottom: 5px; }
-    .substitute-info { margin-top: 20px; padding: 10px; border: 1px solid #aaa; background: #f9f9f9; }
-    .highlight { font-weight: bold; color: green; }
-    
-  </style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #e0f7fa, #fff);
+    margin: 0;
+    padding: 20px;
+  }
+
+  nav {
+    background: #00796b;
+    padding: 12px;
+    text-align: center;
+    margin-bottom: 25px;
+  }
+
+  nav a {
+    margin: 0 10px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 16px;
+  }
+
+  h1, h2 {
+    text-align: center;
+    color: #004d40;
+    margin-top: 0;
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    justify-content: center;
+  }
+
+  li {
+    background: #e0f2f1;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  }
+
+  .substitute-info {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f9fbe7;
+    border: 1px solid #cddc39;
+    border-radius: 8px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .highlight {
+    font-weight: bold;
+    color: #2e7d32;
+  }
+
+  button {
+    background: #00796b;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 10px 5px;
+    font-size: 15px;
+  }
+
+  button:hover {
+    background: #004d40;
+  }
+
+  @media (max-width: 600px) {
+    ul {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    button {
+      width: 100%;
+    }
+  }
+</style>
 </head>
 <body>
 
@@ -30,6 +109,7 @@
 
   <button onclick="saveLeaveTeachers()">💾 सेव करें</button>
   <button onclick="clearLeave()">❌ छुट्टी हटाएं</button>
+  <button onclick="downloadAssignments()">⬇️ JSON डाउनलोड करें)</button>
 
   <div class="substitute-info" id="substituteInfo"></div>
 
@@ -39,7 +119,7 @@
       "SUNIL UIKEY", "VIKAS VERMA", "UTTAM CHAND DEHRIYA", "RINKESH THAKUR",
       "MADAN DHEEMAR", "N.P. MEHRA", "HARERAM VANSHKAR", "VINITA CHOURASIYA",
       "DHARMENDRA NEMA", "SHUBHAM CHOURASIYA", "NAGEENA MOMIN", "DEEPALI SHARMA",
-      "SMITA SHARMA", "DEEPAK"
+      "SMITA SHARMA", "DEEPAK", "R.K. ORIYA", "BABLI CHOUDHARY"
     ];
 
     const teacherGender = {
@@ -48,7 +128,7 @@
       "UTTAM CHAND DEHRIYA": "male", "RINKESH THAKUR": "male", "MADAN DHEEMAR": "male",
       "N.P. MEHRA": "male", "HARERAM VANSHKAR": "male", "VINITA CHOURASIYA": "female",
       "DHARMENDRA NEMA": "male", "SHUBHAM CHOURASIYA": "male", "NAGEENA MOMIN": "female",
-      "DEEPALI SHARMA": "female", "SMITA SHARMA": "female", "DEEPAK": "male"
+      "DEEPALI SHARMA": "female", "SMITA SHARMA": "female", "DEEPAK": "male", "R.K. ORIYA": "male", "BABLI CHOUDHARY": "female"
     };
 
     const periodMap = {
@@ -271,7 +351,46 @@
       localStorage.setItem("substituteAssignments", JSON.stringify(existingAssignments));
       infoDiv.innerHTML = messages.length ? messages.join("<br><br>") : "कोई भी शिक्षक अवकाश पर नहीं है।";
     }
+
+  function downloadAssignments() {
+  const assignments = JSON.parse(localStorage.getItem("substituteAssignments")) || {};
+  const blob = new Blob([JSON.stringify(assignments, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "assignments.json";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
   </script>
+
+
+
+<script>
+  // Right-click disable
+  document.addEventListener('contextmenu', e => e.preventDefault());
+
+  // Text selection disable
+  document.addEventListener('selectstart', e => e.preventDefault());
+
+  // Keyboard shortcut block (Ctrl+U, Ctrl+C, Ctrl+S, Ctrl+A)
+  document.addEventListener('keydown', function (e) {
+    if (e.ctrlKey && ['u', 'c', 's', 'a'].includes(e.key.toLowerCase())) {
+      e.preventDefault();
+    }
+  });
+
+  // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C disable
+  document.onkeydown = function (e) {
+    if (e.keyCode === 123 || 
+        (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase()))) {
+      return false;
+    }
+  };
+</script>
 
 </body>
 </html>

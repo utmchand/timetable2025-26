@@ -3,36 +3,134 @@
 <head>
   <meta charset="UTF-8">
   <title>शिक्षक कार्यभार</title>
-  
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body { font-family: sans-serif; padding: 20px; }
-    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
-    th, td { border: 1px solid #aaa; padding: 8px; text-align: center; }
-    th { background-color: #f0f0f0; }
-    h2 { margin-bottom: 10px; }
-    a { display: inline-block; margin-bottom: 15px; }
-   nav { background: #f0f0f0; padding: 10px; margin-bottom: 20px; }
-    nav a { margin-right: 15px; text-decoration: none; font-weight: bold; color: #333; }
+    :root {
+      --primary-color: #007bff;
+      --bg-color: #f5f7fa;
+      --text-color: #333;
+      --card-bg: #ffffff;
+      --border-color: #ddd;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-color);
+      margin: 0;
+      padding: 10px;
+      color: var(--text-color);
+    }
+
+    nav {
+      background: var(--primary-color);
+      padding: 12px;
+      text-align: center;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    nav a {
+      color: white;
+      font-weight: bold;
+      margin: 0 10px;
+      text-decoration: none;
+      padding: 6px 12px;
+      display: inline-block;
+    }
+
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 6px;
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--primary-color);
+      margin-top: 10px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      background: var(--card-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 12px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    th {
+      background-color: #e0ecff;
+      color: #000;
+    }
+
+    td {
+      color: #444;
+    }
+
+    @media (max-width: 600px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      thead tr {
+        display: none;
+      }
+
+      tr {
+        margin-bottom: 15px;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        padding: 10px;
+        background: white;
+      }
+
+      td {
+        position: relative;
+        padding-left: 50%;
+        border: none;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      td::before {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        width: 45%;
+        font-weight: bold;
+        color: #555;
+        white-space: nowrap;
+      }
+
+      td:nth-child(1)::before { content: "शिक्षक का नाम"; }
+      td:nth-child(2)::before { content: "कार्य"; }
+    }
   </style>
 </head>
 <body>
 
-<nav>
-    
-    <a href="index.html">📘 कार्यभार</a>
+  <nav>
+    <a href="index.html">📅 टाइमटेबल</a>
     <a href="engagement.html">👨‍🏫 एंगेजमेंट</a>
-    <a href="substitutes.html">📘 आज के एंगेज टीचर देखें</a>
+    <a href="substitutes.html">📘 आज के एंगेज टीचर</a>
   </nav>
 
-
-  <h2>शिक्षक कार्यभार (Teacher Responsibilities)</h2>
+  <h2>📘 शिक्षक कार्यभार (Teacher Responsibilities)</h2>
 
   <table>
-    <tr>
-      <th>शिक्षक का नाम</th>
-      <th>शिक्षक</th>
-    </tr>
+    <thead>
+      <tr>
+        <th>शिक्षक का नाम</th>
+        <th>कार्य</th>
+      </tr>
+    </thead>
+    <tbody>
     <tr><td>P.S. JHARIYA</td><td>बोर्ड परीक्षा, एसडीएफ, स्कूल फीस, आरटीआई, स्टॉफिंग और रचनाक्रम, विधान सभा, पीटीए मीटिंग, शाला भवन फाईल एवं रिकॉर्ड</td></tr>
     <tr><td>H.K. THAKUR</td><td>रेड क्रॉस, विद्यार्थी काउंसिल, एसएमडीसी, तेजस्वी ( 11वीं ), आरटीई, जनशिक्षा केन्द्र (संकुल), 5वीं एवं 8वीं परीक्षा, संकुल अंतर्गत जाति प्रमाण पत्र, आधार कार्ड, संकुल अंतर्गत शालाओं, शिक्षकों, छात्र/छात्राओं की जानकारी</td></tr>
     <tr><td>N.R. SAHU</td><td>समस्त प्रकार की छात्रवृत्ति (शिक्षा पोर्टल, एमपीटॉस, एनएमएमएस और एनएसपी)</td></tr>
@@ -50,7 +148,34 @@
     <tr><td>NAGEENA MOMIN</td><td>सीसीएलई, विद्यालय अनुशासन प्रभारी - 1</td></tr>
     <tr><td>DEEPALI SHARMA</td><td>ओजस - 2, उमंग ( 9वीं से 12वीं ), सांस्कृतिक व उत्सव आमंत्रण प्रभारी</td></tr>
     <tr><td>SMITA SHARMA</td><td>जीवविज्ञान लैब, स्वास्थ्य, उज्जवल (9वीं)</td></tr>
+    <tr><td>R.K. ORIYA</td><td>डिसाइड कर रहे हैं.........</td></tr>
+    <tr><td>BABLI CHOUDHARY</td><td>डिसाइड कर रहे हैं.........</td></tr>
     <tr><td>DEEPAK</td><td>आईसीटी लैब, शिक्षक उपस्थिति, शिक्षक इंगेजमेंट (झारिया सर के निर्देशानुसार)</td></tr>
+   </tbody>
   </table>
+
+<script>
+  // Right-click disable
+  document.addEventListener('contextmenu', e => e.preventDefault());
+
+  // Text selection disable
+  document.addEventListener('selectstart', e => e.preventDefault());
+
+  // Keyboard shortcut block (Ctrl+U, Ctrl+C, Ctrl+S, Ctrl+A)
+  document.addEventListener('keydown', function (e) {
+    if (e.ctrlKey && ['u', 'c', 's', 'a'].includes(e.key.toLowerCase())) {
+      e.preventDefault();
+    }
+  });
+
+  // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C disable
+  document.onkeydown = function (e) {
+    if (e.keyCode === 123 || 
+        (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase()))) {
+      return false;
+    }
+  };
+</script>
+
 </body>
 </html>

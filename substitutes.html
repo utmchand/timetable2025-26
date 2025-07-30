@@ -4,64 +4,166 @@
   <meta charset="UTF-8">
   <title>आज के एंगेज शिक्षक</title>
   <style>
-    body { font-family: sans-serif; padding: 20px; }
-    h2 { color: green; }
-    .highlight { font-weight: bold; color: navy; }
-    .message { margin: 10px 0; padding: 10px; border: 1px solid #ccc; background: #f2f2f2; }
-    nav { background: #f0f0f0; padding: 10px; margin-bottom: 20px; }
-    nav a { margin-right: 15px; text-decoration: none; font-weight: bold; color: #333; }
-  </style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #e0f7fa, #fff);
+    margin: 0;
+    padding: 20px;
+  }
+
+  nav {
+    background: #00796b;
+    padding: 12px;
+    text-align: center;
+    margin-bottom: 25px;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+
+  nav a {
+    margin: 0 12px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 16px;
+  }
+
+  h2 {
+    text-align: center;
+    color: #004d40;
+    margin-top: 0;
+    font-size: 22px;
+  }
+
+  .highlight {
+    font-weight: bold;
+    color: #0d47a1;
+  }
+
+  .message {
+    margin: 12px auto;
+    padding: 14px;
+    border-left: 6px solid #009688;
+    background: #e0f2f1;
+    border-radius: 8px;
+    max-width: 700px;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  p {
+    text-align: center;
+    font-size: 16px;
+  }
+
+  @media (max-width: 600px) {
+    nav a {
+      display: block;
+      margin: 6px 0;
+    }
+
+    .message {
+      font-size: 15px;
+      padding: 12px;
+    }
+  }
+</style>
 </head>
 <body>
 
 <nav>
-    <a href="index.html">📅 टाइमटेबल</a>
-    <a href="karyabhar.html">📘 कार्यभार</a>
-    <a href="engagement.html">👨‍🏫 एंगेजमेंट</a>
-  </nav>
+  <a href="index.html">📅 टाइमटेबल</a>
+  <a href="karyabhar.html">📘 कार्यभार</a>
+  <a href="engagement.html">👨‍🏫 एंगेजमेंट</a>
+</nav>
 
-  <h2>📜 आज के एंगेज शिक्षक</h2>
-  <div id="substituteList"></div>
+<h2>📜 आज के एंगेज शिक्षक</h2>
+<div id="substituteList">लोड हो रहा है…</div>
 
-  <script>
-    const assignments = JSON.parse(localStorage.getItem("substituteAssignments")) || {};
-    const leaveTeachers = JSON.parse(localStorage.getItem("leaveTeachers")) || [];
+<script>
+  const teacherGender = {
+    "P.S. JHARIYA": "male", "H.K. THAKUR": "male", "N.R. SAHU": "male",
+    "RAJESH MURKHE": "male", "SUNIL UIKEY": "male", "VIKAS VERMA": "male",
+    "UTTAM CHAND DEHRIYA": "male", "RINKESH THAKUR": "male", "MADAN DHEEMAR": "male",
+    "N.P. MEHRA": "male", "HARERAM VANSHKAR": "male", "VINITA CHOURASIYA": "female",
+    "DHARMENDRA NEMA": "male", "SHUBHAM CHOURASIYA": "male", "NAGEENA MOMIN": "female",
+    "DEEPALI SHARMA": "female", "SMITA SHARMA": "female", "DEEPAK": "male",
+    "R.K. ORIYA": "male", "BABLI CHOUDHARY": "female"
+  };
 
-    const teacherGender = {
-      "P.S. JHARIYA": "male", "H.K. THAKUR": "male", "N.R. SAHU": "male",
-      "RAJESH MURKHE": "male", "SUNIL UIKEY": "male", "VIKAS VERMA": "male",
-      "UTTAM CHAND DEHRIYA": "male", "RINKESH THAKUR": "male", "MADAN DHEEMAR": "male",
-      "N.P. MEHRA": "male", "HARERAM VANSHKAR": "male", "VINITA CHOURASIYA": "female",
-      "DHARMENDRA NEMA": "male", "SHUBHAM CHOURASIYA": "male", "NAGEENA MOMIN": "female",
-      "DEEPALI SHARMA": "female", "SMITA SHARMA": "female", "DEEPAK": "male"
-    };
+  const periodMap = {
+    "10:50-11:30": "पहला",
+    "11:30-12:10": "दूसरा",
+    "12:20-01:00": "तीसरा",
+    "01:00-01:40": "चौथा",
+    "02:10-02:50": "पॉचवा",
+    "02:50-03:30": "छठवॉ",
+    "03:30-04:00": "सातवॉ",
+    "04:00-04:30": "आठवॉ"
+  };
 
-    const periodMap = {
-      "10:50-11:30": "पहला",
-      "11:30-12:10": "दूसरा",
-      "12:20-01:00": "तीसरा",
-      "01:00-01:40": "चौथा",
-      "02:10-02:50": "पॉचवा",
-      "02:50-03:30": "छठवॉ",
-      "03:30-04:00": "सातवॉ",
-      "04:00-04:30": "आठवॉ"
-    };
+  const container = document.getElementById("substituteList");
 
-    const container = document.getElementById("substituteList");
-    const lines = [];
+  // 👇 यहाँ assignments.json का GitHub URL डालें
+  const assignmentsURL = "https://utmchand.github.io/timetable2025-26/assignments.json";
 
-    for (let key in assignments) {
-      const [leaveTeacher, day, time] = key.split("-");
-      const substitute = assignments[key];
-      const gender = teacherGender[substitute] === "female" ? "पढ़ायेंगी" : "पढ़ाएंगे";
-      const hindiPeriod = periodMap[time] || time;
+  fetch(assignmentsURL)
+    .then(res => {
+      if (!res.ok) throw new Error("assignments.json लोड नहीं हो सका");
+      return res.json();
+    })
+    .then(assignments => {
+      const lines = [];
 
-      lines.push(
-        `<div class="message">आज <span class="highlight">${leaveTeacher}</span> छुट्टी पर हैं, उनकी जगह <span class="highlight">${substitute}</span> ${hindiPeriod} बजे से पीरियड में ${gender}।</div>`
-      );
+      for (let key in assignments) {
+        const [leaveTeacher, day, time] = key.split("-");
+        const substitute = assignments[key];
+
+        if (substitute === "UTTAM CHAND DEHRIYA") continue;
+
+        const gender = teacherGender[substitute] === "female" ? "पढ़ायेंगी" : "पढ़ाएंगे";
+        const hindiPeriod = periodMap[time] || time;
+
+        lines.push(
+          `<div class="message">आज <span class="highlight">${leaveTeacher}</span> छुट्टी पर हैं, उनकी जगह <span class="highlight">${substitute}</span> ${hindiPeriod} पीरियड में ${gender}।</div>`
+        );
+      }
+
+      container.innerHTML = lines.length ? lines.join("") : "<p>आज कोई भी एंगेज ड्यूटी पर नहीं है।</p>";
+    })
+    .catch(err => {
+      container.innerHTML = `<p style="color:red;">डेटा लोड करने में त्रुटि: ${err.message}</p>`;
+    });
+</script>
+
+
+<script>
+  // Right-click disable
+  document.addEventListener('contextmenu', e => e.preventDefault());
+
+  // Text selection disable
+  document.addEventListener('selectstart', e => e.preventDefault());
+
+  // Keyboard shortcut block (Ctrl+U, Ctrl+C, Ctrl+S, Ctrl+A)
+  document.addEventListener('keydown', function (e) {
+    if (e.ctrlKey && ['u', 'c', 's', 'a'].includes(e.key.toLowerCase())) {
+      e.preventDefault();
     }
+  });
 
-    container.innerHTML = lines.length ? lines.join("") : "<p>आज कोई भी एंगेज ड्यूटी पर नहीं है।</p>";
-  </script>
+  // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C disable
+  document.onkeydown = function (e) {
+    if (e.keyCode === 123 || 
+        (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase()))) {
+      return false;
+    }
+  };
+</script>
+
+
 </body>
 </html>
