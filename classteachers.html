@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>📚 कक्षा शिक्षक</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f4f6f8;
+    }
+    nav {
+      background-color: #004d99;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0 10px;
+      display: inline-block;
+      padding: 8px 12px;
+    }
+    nav a:hover {
+      background: #003366;
+      border-radius: 4px;
+    }
+    h2 {
+      color: #004d99;
+      text-align: center;
+      margin-top: 20px;
+    }
+    table {
+      width: 100%;
+      max-width: 800px;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background: white;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #ccc;
+      text-align: center;
+      vertical-align: middle;
+    }
+    th {
+      background: #e0eafc;
+      color: #003366;
+    }
+    img.teacher-photo {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid #ccc;
+    }
+    @media (max-width: 600px) {
+      table, th, td {
+        font-size: 14px;
+      }
+      img.teacher-photo {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+<marquee direction="right" behavior="alternate" scrollamount="5" style="background:#003366; color:white; font-weight:bold; padding:8px; font-size:22px;">
+  शासकीय उच्चतर माध्यमिक विद्यालय गोरखपुर , जिला - नरसिंहपुर (म.प्र.)
+</marquee>
+
+<nav>
+    <a href="index.html">📅 टाइमटेबल</a>
+    <a href="karyabhar.html">📘 कार्यभार</a>
+    <a href="engagement.html">👨‍🏫 एंगेजमेंट</a>
+    <a href="substitutes.html">✅ ड्यूटी</a>
+</nav>
+
+  <h2>📚 कक्षा शिक्षकों की सूची</h2>
+
+  <table>
+    <tr>
+      <th>कक्षा</th>
+      <th>कक्षा शिक्षक</th>
+      <th>फोटो</th>
+    </tr>
+    <tr><td>IX A</td><td>DEEPALI SHARMA</td><td><img class="teacher-photo" src="photos/DEEPALI_SHARMA.jpg" alt="DEEPALI SHARMA"></td></tr>
+    <tr><td>IX B</td><td>RAJESH MURKHE</td><td><img class="teacher-photo" src="photos/RAJESH_MURKHE.jpg" alt="RAJESH MURKHE"></td></tr>
+    <tr><td>X A</td><td>SUNIL UIKEY</td><td><img class="teacher-photo" src="photos/SUNIL_UIKEY.jpg" alt="SUNIL UIKEY"></td></tr>
+    <tr><td>X B</td><td>DHARMENDRA NEMA</td><td><img class="teacher-photo" src="photos/DHARMENDRA_NEMA.jpg" alt="DHARMENDRA NEMA"></td></tr>
+    <tr><td>XI A</td><td>H.K. THAKUR</td><td><img class="teacher-photo" src="photos/H.K._THAKUR.jpg" alt="H.K. THAKUR"></td></tr>
+    <tr><td>XI B</td><td>HARERAM VANSHKAR</td><td><img class="teacher-photo" src="photos/HARERAM_VANSHKAR.jpg" alt="HARERAM VANSHKAR"></td></tr>
+    <tr><td>XI C</td><td>SMITA SHARMA</td><td><img class="teacher-photo" src="photos/SMITA_SHARMA.jpg" alt="SMITA SHARMA"></td></tr>
+    <tr><td>XII A</td><td>P.S. JHARIYA</td><td><img class="teacher-photo" src="photos/P.S._JHARIYA.jpg" alt="P.S. JHARIYA"></td></tr>
+    <tr><td>XII B</td><td>MADAN DHEEMAR</td><td><img class="teacher-photo" src="photos/MADAN_DHEEMAR.jpg" alt="MADAN DHEEMAR"></td></tr>
+    <tr><td>XII C</td><td>N.P. MEHRA</td><td><img class="teacher-photo" src="photos/N.P._MEHRA.jpg" alt="N.P. MEHRA"></td></tr>
+  </table>
+  
+<script>
+  // Right-click disable
+  document.addEventListener('contextmenu', e => e.preventDefault());
+
+  // Text selection disable
+  document.addEventListener('selectstart', e => e.preventDefault());
+
+  // Keyboard shortcut block (Ctrl+U, Ctrl+C, Ctrl+S, Ctrl+A)
+  document.addEventListener('keydown', function (e) {
+    if (e.ctrlKey && ['u', 'c', 's', 'a'].includes(e.key.toLowerCase())) {
+      e.preventDefault();
+    }
+  });
+
+  // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C disable
+  document.onkeydown = function (e) {
+    if (e.keyCode === 123 || 
+        (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase()))) {
+      return false;
+    }
+  };
+</script>
+
+
+<footer style="margin-top: 40px; padding: 10px; text-align: center; background: #f0f0f0; font-size: 14px; color: #555;">
+  <div style="font-size: 18px; color: #388e3c; font-weight: bold;"> *{U.C.D.}*</div>
+    © 2025 शासकीय उ.मा.वि. गोरखपुर, जिला - नरसिंहपुर (म.प्र.) |DEVELOPED & MAINTAINED BY UTTAM CHAND DEHRIYA (VOCATIONAL TRAINER - I.T.)
+  </footer>
+
+
+
+
+</body>
+</html>
