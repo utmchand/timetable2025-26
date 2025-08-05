@@ -321,7 +321,8 @@
 
                   if (!substitute) {
                     const vacant = teachers.filter(t =>
-                    t !== "UTTAM CHAND DEHRIYA" &&             // <-- यहाँ ब्लॉक किया
+                    t !== "UTTAM CHAND DEHRIYA" && 
+                    t !== "P.S. JHARIYA" &&            // <-- यहाँ ब्लॉक किया
                     !leaveTeachers.includes(t) &&
                     !engagedSet.has(t)
                     );

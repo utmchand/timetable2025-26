@@ -127,7 +127,7 @@
         const [leaveTeacher, day, time] = key.split("-");
         const substitute = assignments[key];
 
-        if (substitute === "UTTAM CHAND DEHRIYA") continue;
+        if (substitute === "UTTAM CHAND DEHRIYA" || substitute === "P.S. JHARIYA") continue;
 
         const gender = teacherGender[substitute] === "female" ? "पढ़ायेंगी" : "पढ़ाएंगे";
         const hindiPeriod = periodMap[time] || time;
