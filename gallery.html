@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>📸 विद्यालय फोटो गैलरी</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f6f7;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(to right, #16a085, #1abc9c);
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    nav {
+      background: #2c3e50;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: #1abc9c;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .card-info {
+      padding: 15px;
+      text-align: center;
+    }
+    .card-info h3 {
+      margin: 0;
+      color: #16a085;
+    }
+    .card-info p {
+      font-size: 14px;
+      margin-top: 5px;
+      color: #555;
+    }
+
+    footer {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>📸 विद्यालय फोटो गैलरी</h1>
+</header>
+
+<nav>
+  <a href="index.html">🏠 होम</a>
+  <a href="tt.html">📅 टाइमटेबल</a>
+  <a href="karyabhar.html">📘 कार्यभार</a>
+  <a href="engagement.html">👨‍🏫 एंगेजमेंट</a>
+  <a href="substitutes.html">📑 आज के एंगेज टीचर</a>
+  <a href="classteachers.html">👩‍🏫 क्लास टीचर</a>
+  <a href="vocational.html">🎓 वोकेशनल एजुकेशन</a>
+  
+</nav>
+
+<section class="gallery">
+  <!-- Card 1 -->
+  <div class="card">
+     <img src="Photos/sch_prog/1.jpg" alt="Gallery Photo">
+    <img src="Photos/sch_prog/5.jpg" alt="Gallery Photo">
+    <img src="Photos/sch_prog/6.jpg" alt="Gallery Photo">
+    <img src="Photos/sch_prog/4.jpg" alt="Gallery Photo">
+    <div class="card-info">
+      <h3>विद्यालय कार्यक्रम</h3>
+      <p>विद्यालय के मुख्य कार्यक्रम</p>
+    </div>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="card">
+    <img src="images/classroom.jpg" alt="कक्षा कक्ष">
+    <div class="card-info">
+      <h3>कक्षा कक्ष</h3>
+      <p>आधुनिक सुविधाओं से युक्त कक्षा</p>
+    </div>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="card">
+    <img src="Photos/sch_prog/7.jpg" alt="Gallery Photo">
+    <img src="Photos/sch_prog/8.jpg" alt="Gallery Photo">
+     <img src="Photos/sch_prog/9.jpg" alt="Gallery Photo">
+    <img src="Photos/sch_prog/10.jpg" alt="Gallery Photo">
+    <div class="card-info">
+      <h3>खेल दिवस</h3>
+      <p>विद्यालय का वार्षिक खेल दिवस</p>
+    </div>
+  </div>
+
+  <!-- Card 4 -->
+  <div class="card">
+    <img src="Photos/sch_prog/2.jpg" alt="Gallery Photo">
+    <img src="Photos/sch_prog/3.jpg" alt="Gallery Photo">
+     <img src="Photos/sch_prog/11.jpg" alt="Gallery Photo">
+    <img src="Photos/sch_prog/12.jpg" alt="Gallery Photo">
+    <div class="card-info">
+      <h3>विज्ञान प्रयोगशाला</h3>
+      <p>नवीनतम उपकरणों से सुसज्जित प्रयोगशाला</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Right-click disable
+  document.addEventListener('contextmenu', e => e.preventDefault());
+
+  // Text selection disable
+  document.addEventListener('selectstart', e => e.preventDefault());
+
+  // Keyboard shortcut block (Ctrl+U, Ctrl+C, Ctrl+S, Ctrl+A)
+  document.addEventListener('keydown', function (e) {
+    if (e.ctrlKey && ['u', 'c', 's', 'a'].includes(e.key.toLowerCase())) {
+      e.preventDefault();
+    }
+  });
+
+  // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C disable
+  document.onkeydown = function (e) {
+    if (e.keyCode === 123 || 
+        (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase()))) {
+      return false;
+    }
+  };
+</script>
+
+<footer style="background:linear-gradient(to right, #2c3e50, #34495e); color:white; text-align:center; padding:30px; margin-top:30px; border-top:5px solid #16a085;">
+  <div style="font-size: 18px; color: #388e3c; font-weight: bold;"> *{U.C.D.}*</div>
+      <img src="Photos/UTM.jpg" alt="Technical Support" 
+       style="width:80px; height:80px; border-radius:15px; box-shadow:0px 0px 15px rgba(0,0,0,0.5); transition:0.3s;"
+       onmouseover="this.style.transform='rotate(5deg) scale(1.05)';"
+       onmouseout="this.style.transform='scale(1)';"> <br>
+       © 2025 शासकीय उ.मा.वि. गोरखपुर, जिला - नरसिंहपुर (म.प्र.) | DEVELOPED & MAINTAINED BY UTTAM CHAND DEHRIYA (VOCATIONAL TRAINER - I.T.)
+  </footer>
+
+</body>
+</html>

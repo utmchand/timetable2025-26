@@ -100,10 +100,14 @@
 </marquee>
 
   <nav>
-    <a href="classteachers.html">📚 क्लास टीचर</a>
-    <a href="index.html">📅 टाइमटेबल</a>
+    <a href="index.html">🏠 होम</a>
+    <a href="tt.html">📅 टाइमटेबल</a>
     <a href="karyabhar.html">📘 कार्यभार</a>
-    <a href="substitutes.html">📘 आज के एंगेज टीचर देखें</a> 
+    <a href="substitutes.html">📑 आज के एंगेज टीचर</a>
+    <a href="classteachers.html">👩‍🏫 क्लास टीचर</a>
+    <a href="vocational.html">🎓 वोकेशनल एजुकेशन</a>
+   <a href="gallery.html">📸 फोटो गैलरी</a>
+ 
   </nav>
   <h1>शा. उ.मा.वि. गोरखपुर <br> सोमवार से शनिवार एंगेजमेंट लगाने का समय सुबह 10ः30 बजे से सुबह 10ः50 तक रहेगा</h1>
   <h2>👨‍🏫 अवकाश पर शिक्षक चुनें</h2>
@@ -136,14 +140,14 @@
     };
 
     const periodMap = {
-      "10:50-11:30": "पहला",
-      "11:30-12:10": "दूसरा",
-      "12:20-01:00": "तीसरा",
-      "01:00-01:40": "चौथा",
-      "02:10-02:50": "पॉचवा",
-      "02:50-03:30": "छठवॉ",
-      "03:30-04:00": "सातवॉ",
-      "04:00-04:30": "आठवॉ"
+      "10:50-11:30": "पहला पीरियड 10:50-11:30",
+      "11:30-12:10": "दूसरा पीरियड 11:30-12:10",
+      "12:20-01:00": "तीसरा पीरियड 12:20-01:00",
+      "01:00-01:40": "चौथा पीरियड 01:00-01:40",
+      "02:10-02:50": "पॉचवा पीरियड 02:10-02:50",
+      "02:50-03:30": "छठवॉ पीरियड 02:50-03:30",
+      "03:30-04:00": "सातवॉ पीरियड 03:30-04:00",
+      "04:00-04:30": "आठवॉ पीरियड 04:00-04:30"
     };
 
     // Demo timetable (same format as index.html timetable object)
@@ -272,90 +276,98 @@
     }
 
     function showSubstituteMessage() {
-      const infoDiv = document.getElementById("substituteInfo");
-      const leaveTeachers = JSON.parse(localStorage.getItem("leaveTeachers")) || [];
-      const existingAssignments = JSON.parse(localStorage.getItem("substituteAssignments")) || {};
-      const engagedByTime = {};
-      let messages = [];
+  const infoDiv = document.getElementById("substituteInfo");
+  const leaveTeachers = JSON.parse(localStorage.getItem("leaveTeachers")) || [];
+  const existingAssignments = JSON.parse(localStorage.getItem("substituteAssignments")) || {};
+  const engagedByTime = {};
+  let messages = [];
 
-      for (let day in timetable) {
-        for (let time in timetable[day]) {
-          const key = `${day}-${time}`;
-          engagedByTime[key] = new Set();
+  for (let day in timetable) {
+    for (let time in timetable[day]) {
+      const key = `${day}-${time}`;
+      engagedByTime[key] = new Set();
 
-          const periodData = timetable[day][time];
-          for (let cls in periodData) {
-            const parts = periodData[cls].split(/[/|\\]|\/\/|,|&|और| तथा /);
-            parts.forEach(part => {
-              const teacher = part.split(" - ")[1]?.trim().toUpperCase();
-              if (teacher && teachers.includes(teacher)) {
-                engagedByTime[key].add(teacher);
-              }
-            });
+      const periodData = timetable[day][time];
+      for (let cls in periodData) {
+        const parts = periodData[cls].split(/[/|\\]|\/\/|,|&|और| तथा /);
+        parts.forEach(part => {
+          const teacher = part.split(" - ")[1]?.trim().toUpperCase();
+          if (teacher && teachers.includes(teacher)) {
+            engagedByTime[key].add(teacher);
           }
+        });
+      }
+    }
+  }
+
+  leaveTeachers.forEach(leaveTeacher => {
+    const assignedMessages = [];
+    const uniqueKeys = new Set();
+
+    for (let day in timetable) {
+      for (let time in timetable[day]) {
+        const periodData = timetable[day][time];
+
+        for (let cls in periodData) {
+          const parts = periodData[cls].split(/[/|\\]|\/\/|,|&|और| तथा /);
+          parts.forEach(part => {
+            const teacher = part.split(" - ")[1]?.trim().toUpperCase();
+            if (teacher === leaveTeacher.toUpperCase()) {
+              const key = `${day}-${time}-${teacher}`;
+              if (uniqueKeys.has(key)) return;
+              uniqueKeys.add(key);
+
+              const timeKey = `${day}-${time}`;
+              const engagedSet = engagedByTime[timeKey];
+              const substituteKey = `${leaveTeacher}-${day}-${time}`;
+
+              let substitute = existingAssignments[substituteKey];
+
+              if (!substitute) {
+                const vacant = teachers.filter(t =>
+                  t !== "UTTAM CHAND DEHRIYA" &&
+                  t !== "P.S. JHARIYA" && // ब्लॉक
+                  !leaveTeachers.includes(t) &&
+                  !engagedSet.has(t)
+                );
+                if (vacant.length === 0) {
+                  assignedMessages.push(
+                    `आज <span class="highlight">${leaveTeacher}</span> छुट्टी पर हैं, 
+                    लेकिन ${periodMap[time] || time} तक कक्षा <span class="highlight">${cls}</span> के लिए कोई उपलब्ध शिक्षक नहीं है।`
+                  );
+                  return;
+                } else {
+                  substitute = vacant[Math.floor(Math.random() * vacant.length)];
+                  existingAssignments[substituteKey] = substitute;
+                }
+              }
+
+              const gender = teacherGender[substitute] === "female" ? "पढ़ायेंगी" : "पढ़ाएंगे";
+              const hindiPeriod = periodMap[time] || time;
+
+              assignedMessages.push(
+                `आज <span class="highlight">${leaveTeacher}</span> छुट्टी पर हैं, 
+                 उनकी जगह <span class="highlight">${substitute}</span> 
+                 ${hindiPeriod} बजे तक कक्षा <span class="highlight">${cls}</span> को ${gender}।`
+              );
+
+              engagedSet.add(substitute);
+            }
+          });
         }
       }
-
-      leaveTeachers.forEach(leaveTeacher => {
-        const assignedMessages = [];
-        const uniqueKeys = new Set();
-
-        for (let day in timetable) {
-          for (let time in timetable[day]) {
-            const periodData = timetable[day][time];
-
-            for (let cls in periodData) {
-              const parts = periodData[cls].split(/[/|\\]|\/\/|,|&|और| तथा /);
-              parts.forEach(part => {
-                const teacher = part.split(" - ")[1]?.trim().toUpperCase();
-                if (teacher === leaveTeacher.toUpperCase()) {
-                  const key = `${day}-${time}-${teacher}`;
-                  if (uniqueKeys.has(key)) return;
-                  uniqueKeys.add(key);
-
-                  const timeKey = `${day}-${time}`;
-                  const engagedSet = engagedByTime[timeKey];
-                  const substituteKey = `${leaveTeacher}-${day}-${time}`;
-
-                  let substitute = existingAssignments[substituteKey];
-
-                  if (!substitute) {
-                    const vacant = teachers.filter(t =>
-                    t !== "UTTAM CHAND DEHRIYA" && 
-                    t !== "P.S. JHARIYA" &&            // <-- यहाँ ब्लॉक किया
-                    !leaveTeachers.includes(t) &&
-                    !engagedSet.has(t)
-                    );
-                    if (vacant.length === 0) {
-                      assignedMessages.push(`आज <span class="highlight">${leaveTeacher}</span> छुट्टी पर हैं, लेकिन ${periodMap[time] || time} पीरियड में कोई उपलब्ध शिक्षक नहीं है।`);
-                      return;
-                    } else {
-                      substitute = vacant[Math.floor(Math.random() * vacant.length)];
-                      existingAssignments[substituteKey] = substitute;
-                    }
-                  }
-
-                  const gender = teacherGender[substitute] === "female" ? "पढ़ायेंगी" : "पढ़ाएंगे";
-                  const hindiPeriod = periodMap[time] || time;
-
-                  assignedMessages.push(`आज <span class="highlight">${leaveTeacher}</span> छुट्टी पर हैं, उनकी जगह <span class="highlight">${substitute}</span> ${hindiPeriod} पीरियड में ${gender}।`);
-                  engagedSet.add(substitute);
-                }
-              });
-            }
-          }
-        }
-
-        if (assignedMessages.length === 0) {
-          messages.push(`आज <span class="highlight">${leaveTeacher}</span> का कोई पीरियड नहीं है।`);
-        } else {
-          messages.push(...assignedMessages);
-        }
-      });
-
-      localStorage.setItem("substituteAssignments", JSON.stringify(existingAssignments));
-      infoDiv.innerHTML = messages.length ? messages.join("<br><br>") : "कोई भी शिक्षक अवकाश पर नहीं है।";
     }
+
+    if (assignedMessages.length === 0) {
+      messages.push(`आज <span class="highlight">${leaveTeacher}</span> का कोई पीरियड नहीं है।`);
+    } else {
+      messages.push(...assignedMessages);
+    }
+  });
+
+  localStorage.setItem("substituteAssignments", JSON.stringify(existingAssignments));
+  infoDiv.innerHTML = messages.length ? messages.join("<br><br>") : "कोई भी शिक्षक अवकाश पर नहीं है।";
+}
 
   function downloadAssignments() {
   const assignments = JSON.parse(localStorage.getItem("substituteAssignments")) || {};
@@ -397,10 +409,14 @@
   };
 </script>
 
-<footer style="margin-top: 40px; padding: 10px; text-align: center; background: #f0f0f0; font-size: 14px; color: #555;">
+<footer style="background:linear-gradient(to right, #2c3e50, #34495e); color:white; text-align:center; padding:30px; margin-top:30px; border-top:5px solid #16a085;">
   <div style="font-size: 18px; color: #388e3c; font-weight: bold;"> *{U.C.D.}*</div>
-    © 2025 शासकीय उ.मा.वि. गोरखपुर, जिला - नरसिंहपुर (म.प्र.) |DEVELOPED & MAINTAINED BY UTTAM CHAND DEHRIYA (VOCATIONAL TRAINER - I.T.)
-  </footer>
+      <img src="Photos/UTM.jpg" alt="Technical Support" 
+       style="width:80px; height:80px; border-radius:15px; box-shadow:0px 0px 15px rgba(0,0,0,0.5); transition:0.3s;"
+       onmouseover="this.style.transform='rotate(5deg) scale(1.05)';"
+       onmouseout="this.style.transform='scale(1)';"> <br>
+       © 2025 शासकीय उ.मा.वि. गोरखपुर, जिला - नरसिंहपुर (म.प्र.) | DEVELOPED & MAINTAINED BY UTTAM CHAND DEHRIYA (VOCATIONAL TRAINER - I.T.)
+</footer>
 
 </body>
 </html>
