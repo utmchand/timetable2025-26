@@ -40,26 +40,93 @@
     h2 {
       color: #004d40;
     }
-    .course-list {
+    .it-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .it {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px gray;
+      padding: 15px;
+      text-align: center;
+    }
+    .it img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+  .itgl-iv {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 15px;
       margin-top: 20px;
     }
-    .course {
+    .itgliv {
       background: white;
       border-radius: 10px;
       box-shadow: 0 0 8px gray;
       padding: 15px;
       text-align: center;
     }
-    .course img {
-      width: 80%;
+    .itgliv img {
+      width: 100%;
       height: 450px;
       object-fit: cover;
       border-radius: 8px;
       margin-bottom: 10px;
     }
+
+.ag-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .ag {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 8px gray;
+      padding: 15px;
+      text-align: center;
+    }
+    .ag img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+  .aggl-iv {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .aggliv {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 8px gray;
+      padding: 15px;
+      text-align: center;
+    }
+    .aggliv img {
+      width: 100%;
+      height: 450px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+
+
+
   </style>
 </head>
 <body>
@@ -82,8 +149,8 @@
   <h2>📘 हमारे विद्यालय में उपलब्ध Vocational Courses</h2>
   <p>विद्यालय में विद्यार्थियों को रोजगारोन्मुखी बनाने के लिए विभिन्न वोकेशनल शिक्षा पाठ्यक्रम संचालित किए जाते हैं।</p>
 
-  <div class="course-list">
-    <div class="course">
+  <div class="it-list">
+    <div class="it">
        <h3>💻 सूचना प्रौद्योगिकी (IT)</h3>
       <p>कंप्यूटर, इंटरनेट, प्रोग्रामिंग और डिजिटल शिक्षा की ट्रेनिंग।</p>
       <img src="photos/voc/IT1.jpg" alt="IT Lab">
@@ -92,20 +159,37 @@
       <img src="photos/voc/IT4.jpg" alt="IT Lab">
       <img src="photos/voc/IT5.jpg" alt="IT Lab">
       <img src="photos/voc/IT6.jpg" alt="IT Lab">
-      <img src="photos/voc/ITGLIV.jpg" alt="IT Lab">
+    </div>  
      
+    <div class="itgl-iv">
+    <div class="itgliv">
+       <h3>💻 सूचना प्रौद्योगिकी (IT)</h3>
+      <p>सर्वांगीण विकास हेतु अतिथि व्‍याख्‍यान एवं औद्योगिक भ्रमण</p>
+      <img src="photos/voc/ITGLIV.jpg" alt="IT Lab">
     </div>
-    <div class="course">
+    </div>
+    <div class="aggl-iv">
+    <div class="ag">
        <h3>🌱 कृषि शिक्षा</h3>
       <p>खेती, बागवानी और आधुनिक कृषि तकनीकों की शिक्षा।</p>
-      <img src="photos/voc/AG1.jpg" alt="Agriculture">
-      <img src="photos/voc/AG2.jpg" alt="Agriculture">
-      <img src="photos/voc/AG3.jpg" alt="Agriculture">
-      <img src="photos/voc/AG4.jpg" alt="Agriculture">
-     
+      <img src="photos/voc/ag1.jpg" alt="Agriculture">
+      <img src="photos/voc/ag2.jpg" alt="Agriculture">
+      <img src="photos/voc/ag3.jpg" alt="Agriculture">
+      <img src="photos/voc/ag4.jpg" alt="Agriculture">
+    </div>
     </div>
     
+
+   <div class="aggl-iv">
+    <div class="aggliv">
+       <h3>🌱 कृषि शिक्षा</h3>
+      <p>सर्वांगीण विकास हेतु अतिथि व्‍याख्‍यान एवं औद्योगिक भ्रमण</p>
+      <img src="photos/voc/aggliv.jpg" alt="Agriculture">
+    </div>
+    </div> 
+    </div>
   </div>
+</div>
 </div>
 
 
